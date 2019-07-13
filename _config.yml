@@ -1,1 +1,19 @@
+baseurl: ""
+#------------------------------
+defaults:
+  - scope:
+      path: "assets/images"
+    values:
+      image: true
+#------------------------------
+exclude:
+  - "*.lock"
+  - "*.njsproj"
+  - "*.user"
+  - Gemfile
+#------------------------------
+markdown: kramdown
+port: 8080
 theme: jekyll-theme-cayman
+#------------------------------
+url: ""
