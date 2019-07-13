@@ -7,13 +7,12 @@ defaults:
       image: true
 #------------------------------
 exclude:
+  - .vs
   - "*.lock"
   - "*.njsproj"
   - "*.user"
   - Gemfile
 #------------------------------
+incremental: true
 markdown: kramdown
 port: 8080
-theme: jekyll-theme-cayman
-#------------------------------
-url: ""

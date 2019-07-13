@@ -12,3 +12,6 @@ install_if -> { RUBY_PLATFORM =~ %r!mingw|mswin|java! } do
   gem "tzinfo"
   gem "tzinfo-data"
 end
+
+# Prevents constant polling for directory changes on Windows
+  gem "wdm", "~> 0.1.1", :install_if => Gem.win_platform?

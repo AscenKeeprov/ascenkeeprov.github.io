@@ -254,6 +254,7 @@ GEM
     tzinfo-data (1.2019.2)
       tzinfo (>= 1.0.0)
     unicode-display_width (1.6.0)
+    wdm (0.1.1)
 
 PLATFORMS
   x64-mingw32
@@ -263,6 +264,7 @@ DEPENDENCIES
   jekyll-assets
   tzinfo
   tzinfo-data
+  wdm (~> 0.1.1)
 
 RUBY VERSION
    ruby 2.5.5p157
