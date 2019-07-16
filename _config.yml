@@ -1,4 +1,5 @@
 baseurl: ""
+collections_dir: _collections
 #------------------------------
 defaults:
   - scope:
@@ -9,10 +10,12 @@ defaults:
 exclude:
   - .vs
   - "*.lock"
-  - "*.njsproj"
   - "*.user"
   - Gemfile
 #------------------------------
+future: true
 incremental: true
-markdown: kramdown
+kramdown:
+  show_warnings: true
 port: 8080
+title: "&#x16A3 &#x16D5"

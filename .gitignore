@@ -332,3 +332,5 @@ ASALocalRun/
 # Jekyll build files
 _site
 .jekyll-metadata
+.lock
+.sass-cache
