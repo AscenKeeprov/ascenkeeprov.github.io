@@ -9,9 +9,14 @@ defaults:
 #------------------------------
 exclude:
   - .vs
+  - _site
   - "*.lock"
   - "*.user"
   - Gemfile
+  - gulpfile.js
+  - node_modules
+  - package.json
+  - package-lock.json
 #------------------------------
 future: true
 incremental: true
