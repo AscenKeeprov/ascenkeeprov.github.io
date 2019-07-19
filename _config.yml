@@ -1,15 +1,16 @@
 baseurl: ""
 collections_dir: _collections
-#------------------------------
+
 defaults:
   - scope:
       path: "assets/images"
     values:
       image: true
-#------------------------------
+
 exclude:
   - .vs
   - _site
+  - _styles
   - "*.lock"
   - "*.user"
   - Gemfile
@@ -17,10 +18,14 @@ exclude:
   - node_modules
   - package.json
   - package-lock.json
-#------------------------------
+
 future: true
-incremental: true
+
+# Disable incremental build when using Gulp watch function
+# incremental: true
+
 kramdown:
   show_warnings: true
+
 port: 8080
 title: "&#x16A3 &#x16D5"
