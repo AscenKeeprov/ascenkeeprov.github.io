@@ -330,7 +330,7 @@ ASALocalRun/
 .mfractor/
 
 # Jekyll build files
-_site
 .jekyll-metadata
 .lock
 .sass-cache
+_site

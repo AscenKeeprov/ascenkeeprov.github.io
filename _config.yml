@@ -1,28 +1,28 @@
 baseurl: ""
 collections_dir: _collections
+destination: ./docs
 
 defaults:
   - scope:
-      path: "assets/images"
+      path: "_assets/images"
     values:
       image: true
 
 exclude:
   - .vs
-  - _site
-  - _styles
   - "*.lock"
   - "*.user"
+  - docs
   - Gemfile
   - gulpfile.js
+  - LICENSE
   - node_modules
   - package.json
   - package-lock.json
+  - README.md
 
 future: true
-
-# Disable incremental build when using Gulp watch function
-# incremental: true
+incremental: true
 
 kramdown:
   show_warnings: true

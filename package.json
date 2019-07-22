@@ -3,18 +3,35 @@
 		"name": "Asen Kiprov",
 		"email": "assenkiprov@yahoo.com"
 	},
+	"browserslist": [
+		"Android >= 4",
+		"BlackBerry >= 10",
+		"Chrome >= 57",
+		"Edge >= 15",
+		"Firefox >= 3.5",
+		"IE >= 8",
+		"IE_Mob >= 10",
+		"iOS >= 7",
+		"Opera >= 10",
+		"Op_Mob >= 9.7",
+		"Safari >= 5"
+	],
 	"bugs": {
 		"url": "https://github.com/AscenKeeprov/ascenkeeprov.github.io/issues"
 	},
 	"devDependencies": {
+		"autoprefixer": "^9.6.1",
 		"browser-sync": "^2.26.7",
 		"child_process": "^1.0.2",
+		"cssnano": "^4.1.10",
 		"gulp": "^4.0.2",
-		"gulp-autoprefixer": "^6.1.0",
+		"gulp-concat": "^2.6.1",
 		"gulp-exec": "^4.0.0",
 		"gulp-imagemin": "^6.0.0",
+		"gulp-postcss": "^8.0.0",
 		"gulp-sass": "^4.0.2",
-		"node-sass": "^4.12.0"
+		"gulp-sourcemaps": "^2.6.5",
+		"gulp-terser": "^1.2.0"
 	},
 	"homepage": "https://ascenkeeprov.github.io",
 	"license": "MIT",

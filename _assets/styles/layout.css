@@ -1,0 +1,26 @@
+a.icon > span {
+	border-color: var(--color-grass, forestgreen);
+	border-left-style: solid;
+	border-left-width: 0.25em;
+	padding: 0.125em;
+	transition: border-bottom 0.0625s 0.4375s, border-color 1s, border-left 1s, border-right 0.25s 0.75s, border-top 0.0625s 0.4375s;
+}
+
+	a.icon > span:hover {
+		border-bottom-style: dashed;
+		border-bottom-width: 0.0625em;
+		border-left-width: 0;
+		border-right-style: solid;
+		border-right-width: 0.125em;
+		border-top-style: dashed;
+		border-top-width: 0.0625em;
+	}
+
+body {
+	background-color: var(--color-ghost, ghostwhite);
+}
+
+.icon-folder::before {
+	content: "\f07b";
+	margin-right: 0.5em;
+}
