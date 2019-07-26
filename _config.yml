@@ -28,4 +28,6 @@ kramdown:
   show_warnings: true
 
 port: 8080
+timezone: Etc/UTC
 title: "&#x16A3 &#x16D5"
+url: https://ascenkeeprov.github.io

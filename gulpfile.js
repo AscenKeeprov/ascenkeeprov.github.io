@@ -78,6 +78,7 @@ function loadStyles() {
 
 function watchForChanges() {
 	browserSync.init({
+		notify: false,
 		port: 8080,
 		server: { baseDir: `./${siteOutputDir}/` },
 		ui: { port: 9090 }
