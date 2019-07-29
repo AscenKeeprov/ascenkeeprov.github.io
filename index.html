@@ -2,6 +2,8 @@
 layout: base
 title: Index
 ---
-{%- for page in site.pages  -%}
-{% include folder.html %}
-{%- endfor -%}
+<section class="index">
+	{%- for page in site.pages  -%}
+	{% include folder.html %}
+	{%- endfor -%}
+</section>

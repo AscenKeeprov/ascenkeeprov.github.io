@@ -1,12 +1,6 @@
 baseurl: ""
-collections_dir: _collections
+collections_dir: collections
 destination: ./docs
-
-defaults:
-  - scope:
-      path: "_assets/images"
-    values:
-      image: true
 
 exclude:
   - .vs
@@ -22,12 +16,31 @@ exclude:
   - README.md
 
 future: true
+
+github:
+  environment: production
+  is_project_page: false
+  is_user_page: true
+  issues_url: https://github.com/AscenKeeprov/ascenkeeprov.github.io/issues
+  license:
+    key: mit
+    name: MIT License
+    spdx_id: MIT
+    url: https://api.github.com/licenses/mit
+  pages_env: production
+  pages_hostname: github.io
+  project_tagline: "Asen Kiprov's personal GitHub page."
+  show_downloads: false
+
 incremental: true
 
 kramdown:
+  input: GFM
   show_warnings: true
 
 port: 8080
+repository: AscenKeeprov/ascenkeeprov.github.io
+theme: null
 timezone: Etc/UTC
-title: "&#x16A3 &#x16D5"
+title: "Asen Kiprov"
 url: https://ascenkeeprov.github.io
