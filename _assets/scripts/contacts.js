@@ -1,5 +1,5 @@
-const punchCardMaxRowSlots = 27;
 const punchCardClassName = 'punch-card';
+const punchCardMaxRowSlots = 37;
 const punchCardRowClassName = 'punch-card-row';
 const punchStyle = 'class="punch-hole"';
 const punchTag = 'mark';
@@ -10,7 +10,7 @@ function createPunchCardRow() {
 	return punchCardRow;
 }
 
-function populatePunchCardRow(punchCardRow, rowIndex, rowSlots = punchCardMaxRowSlots) {
+function populatePunchCardRow(row, rowIndex, rowSlots) {
 	let htmlContent = '';
 	for (let rowSlot = 1; rowSlot <= rowSlots; rowSlot++) {
 		let punchSlots = [2, 5, 10, 14, 16, 22, 25]
@@ -22,14 +22,14 @@ function populatePunchCardRow(punchCardRow, rowIndex, rowSlots = punchCardMaxRow
 			htmlContent += punchHole.outerHTML;
 		} else htmlContent += `${rowIndex}`;
 	}
-	punchCardRow.innerHTML = htmlContent;
+	row.innerHTML = htmlContent;
 }
 
-function populatePunchCardRows(punchCard, rowIndexStart, rowIndexEnd) {
+function populatePunchCardRows(card, rowIndexStart, rowIndexEnd, rowSlots) {
 	for (let rowIndex = rowIndexStart; rowIndex <= rowIndexEnd; rowIndex++) {
 		let punchCardRow = createPunchCardRow();
-		populatePunchCardRow(punchCardRow, rowIndex);
-		punchCard.appendChild(punchCardRow);
+		populatePunchCardRow(punchCardRow, rowIndex, rowSlots);
+		card.appendChild(punchCardRow);
 	}
 }
 
@@ -39,7 +39,7 @@ punchCards.forEach((punchCard) => {
 		.filter(child => child.className.includes(`${punchCardRowClassName}`));
 	if (punchCardRows.length == 0) {
 		punchCard.innerHTML == '';
-		populatePunchCardRows(punchCard, 0, 9);
+		populatePunchCardRows(punchCard, 0, 9, punchCardMaxRowSlots);
 	}
 	else {
 		Array.from(punchCard.children)
@@ -48,19 +48,19 @@ punchCards.forEach((punchCard) => {
 		for (let rowIndex = 0; rowIndex <= 9; rowIndex++) {
 			if (rowIndex < punchCardRows.length) {
 				let punchCardRow = punchCardRows[rowIndex];
-				if (punchCardRow.innerHTML == '') populatePunchCardRow(punchCardRow, rowIndex);
+				if (punchCardRow.innerHTML == '') populatePunchCardRow(punchCardRow, rowIndex, punchCardMaxRowSlots);
 				else {
 					let rowIcons = punchCardRow.querySelectorAll('.icon');
 					let rowTextContent = punchCardRow.textContent.trim();
-					let rowFreeSpace = punchCardMaxRowSlots - rowTextContent.length - rowIcons.length;
-					let filler = document.createElement('span');
-					populatePunchCardRow(filler, rowIndex, rowFreeSpace);
-					if (rowIndex % 2 !== 0) punchCardRow.innerHTML = `${punchCardRow.innerHTML}${filler.outerHTML}`;
-					else punchCardRow.innerHTML = `${filler.outerHTML}${punchCardRow.innerHTML}`;
+					let rowFreeSlots = punchCardMaxRowSlots - rowTextContent.length - rowIcons.length;
+					let rowFiller = document.createElement('span');
+					populatePunchCardRow(rowFiller, rowIndex, rowFreeSlots);
+					if (rowIndex % 2 !== 0) punchCardRow.innerHTML = `${punchCardRow.innerHTML}${rowFiller.outerHTML}`;
+					else punchCardRow.innerHTML = `${rowFiller.outerHTML}${punchCardRow.innerHTML}`;
 				}
 			} else {
 				let punchCardRow = createPunchCardRow();
-				populatePunchCardRow(punchCardRow, rowIndex);
+				populatePunchCardRow(punchCardRow, rowIndex, punchCardMaxRowSlots);
 				punchCard.appendChild(punchCardRow);
 			}
 		}
