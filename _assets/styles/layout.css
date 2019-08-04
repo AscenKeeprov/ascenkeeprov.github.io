@@ -1,4 +1,16 @@
-a.icon > span {
+a[href^="https://github"]::before {
+	content: "\f09b";
+}
+
+a[href^="mailto:"]::before {
+	content: "\f199";
+}
+
+a[href^="tel:"]::before {
+	content: "\f3cd";
+}
+
+a.link-folder > span {
 	border-color: var(--color-grass, forestgreen);
 	border-left-style: solid;
 	border-left-width: 0.25em;
@@ -6,7 +18,7 @@ a.icon > span {
 	transition: border-bottom 0.0625s 0.4375s, border-color 1s, border-left 1s, border-right 0.25s 0.75s, border-top 0.0625s 0.4375s;
 }
 
-	a.icon > span:hover {
+	a.link-folder > span:hover {
 		border-bottom-style: dashed;
 		border-bottom-width: 0.0625em;
 		border-left-width: 0;
@@ -34,18 +46,6 @@ section {
 		height: 100%;
 		justify-content: center;
 	}
-
-.icon-envelope::before {
-	content: "\f199";
-}
-
-.icon-github::before {
-	content: "\f09b";
-}
-
-.icon-mobile-phone::before {
-	content: "\f3cd";
-}
 
 .punch-card {
 	background-color: var(--color-papyrus, lightgoldenrodyellow);
@@ -97,26 +97,21 @@ section {
 		display: inline-flex;
 	}
 
-		.punch-card a:focus,
-		.punch-card a:hover {
-			padding-right: var(--letter-spacing-punch-card, 1rem);
+		.punch-card a:focus ::before,
+		.punch-card a:hover ::before {
+			margin-right: calc(var(--letter-spacing-punch-card, 1rem) / 2);
 		}
 
-			.punch-card a:focus .icon,
-			.punch-card a:hover .icon {
-				margin-right: calc(var(--letter-spacing-punch-card, 1rem) / 2);
-			}
+		.punch-card a:focus .punch-hole,
+		.punch-card a:hover .punch-hole {
+			background-color: inherit;
+			box-shadow: none;
+			margin-right: 0;
+		}
 
-			.punch-card a:focus .punch-hole,
-			.punch-card a:hover .punch-hole {
-				background-color: inherit;
-				box-shadow: none;
-				margin-right: 0;
-			}
-
-	.punch-card .icon {
-		max-width: 1.5em;
-	}
+		.punch-card a::before {
+			max-width: 1.5em;
+		}
 
 	.punch-card > .punch-card-row:nth-child(2),
 	.punch-card > .punch-card-row:nth-child(6) {
@@ -156,7 +151,7 @@ section {
 		width: 0.5em;
 	}
 
-	.punch-card-row:hover a .icon {
+	.punch-card-row:hover a::before {
 		margin-right: calc(var(--letter-spacing-punch-card, 1rem) / 2);
 	}
 

@@ -52,6 +52,7 @@ function getJekyllConfig(configFilePath) {
 		let configObj = {};
 		let jekyllConfig = yamlParser.safeLoad(fileManager.readFileSync(configFilePath, { encoding: 'utf8' }));
 		configObj.assetsPath = `./${jekyllConfig.assets_dir}`;
+		configObj.collectionsPath = `./${jekyllConfig.collections_dir}`;
 		configObj.layoutsPath = `./${jekyllConfig.layouts_dir}`;
 		configObj.outputPath = jekyllConfig.destination;
 		configObj.partialsPath = `./${jekyllConfig.includes_dir}`;
