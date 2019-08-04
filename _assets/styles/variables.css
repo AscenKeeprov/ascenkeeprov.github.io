@@ -1,0 +1,18 @@
+:root {
+	--color-body: rgba(245,250,255,0.5);
+	--color-grass: rgba(35,140,35,1);
+	--color-greyn: rgb(170,180,170);
+	--color-papyrus: rgb(240,245,220);
+	--color-shadow: rgba(0,0,0,0.2);
+	--font-size-huge: 20px;
+	--font-size-large: 18px;
+	--font-size-medium: 16px;
+	--font-size-small: 14px;
+	--font-size-tiny: 12px;
+	--font-weight-bolder: 900;
+	--letter-spacing-punch-card: 1rem;
+	--padding-x-punch-card: 1.5em;
+	--padding-y-punch-card: 1em;
+	--transition-duration-default: 1s;
+	--transition-timing-function-default: ease-in-out;
+}

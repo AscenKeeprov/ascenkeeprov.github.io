@@ -1,0 +1,9 @@
+---
+layout: base
+title: Index
+---
+<section class="index">
+	{%- for page in site.pages  -%}
+	{% include folder.html %}
+	{%- endfor -%}
+</section>

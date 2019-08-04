@@ -1,0 +1,49 @@
+---
+email: a[s]se[n][k]ip[r]ov[@]y[a]ho[o][.]co[m]
+github: g[i]th[u]b[.]com[/]as[c]enk[e][e]prov
+layout: base
+mphone: +3598[8]3[4]32[0]3[2]
+permalink: /contacts/
+punchStyle: class="punch-hole"
+punchTag: mark
+title: Contacts
+---
+{%- capture punchOpeningHtml -%}
+{{ page.punchTag | prepend: "<" }}{{ page.punchStyle | prepend: " " | append: ">" }}
+{%- endcapture -%}
+{%- capture punchClosingHtml -%}
+{{ page.punchTag | prepend: "</" | append: ">" }}
+{%- endcapture -%}
+<section class="contacts">
+	<div class="punch-card">
+		<div class="punch-card-row"></div>
+		<div class="punch-card-row">
+			<address>
+				<a href="mailto:{{ page.email | remove: "[" | remove: "]" }}">
+					<span class="icon icon-envelope"></span>
+					{{ page.email | replace: "[", punchOpeningHtml | replace: "]", punchClosingHtml }}
+				</a>
+			</address>
+		</div>
+		<div class="punch-card-row"></div>
+		<div class="punch-card-row"></div>
+		<div class="punch-card-row">
+			<address>
+				<a href="tel:{{ page.mphone | remove: "[" | remove: "]" }}">
+					<span class="icon icon-mobile-phone"></span>
+					{{ page.mphone | remove_first: "+359" | replace: "[", punchOpeningHtml | replace: "]", punchClosingHtml }}
+				</a>
+			</address>
+		</div>
+		<div class="punch-card-row"></div>
+		<div class="punch-card-row"></div>
+		<div class="punch-card-row">
+			<address>
+				<a href="https://{{ page.github | remove: "[" | remove: "]" }}">
+					<span class="icon icon-github"></span>
+					{{ page.github | replace: "[", punchOpeningHtml | replace: "]", punchClosingHtml }}
+				</a>
+			</address>
+		</div>
+	</div>
+</section>

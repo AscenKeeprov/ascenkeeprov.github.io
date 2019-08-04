@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta charset="UTF-8">
+	<title>
+		{%- if page.title -%}
+		{{ page.title }}
+		{%- elsif site.title -%}
+		{{ site.title }}
+		{%- else -%}
+		&#x16A3;&nbsp;&#x16D5
+		{%- endif -%}
+	</title>
+	<link href="{{ site.baseurl }}/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+	<link href="{{ site.baseurl }}/styles/site.min.css" rel="stylesheet">
+	{%- seo -%}
+</head>
+<body>
+	<main class="page-content">
+		{{ content }}
+		</main>
+		<script src="{{ site.baseurl }}/scripts/site.min.js" type="text/javascript"></script>
+</body>
+</html>
