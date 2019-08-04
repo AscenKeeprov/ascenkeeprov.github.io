@@ -8,6 +8,10 @@ const fileCombiner = require('gulp-concat');
 const fileManager = require('fs');
 const gulp = require('gulp');
 const imageMinifier = require('gulp-imagemin');
+const ioManager = require('readline').createInterface({
+	input: process.stdin,
+	output: process.stdout
+});
 const jsMinifier = require('gulp-terser');
 const processManager = require('child_process');
 const sassProcessor = require('gulp-sass');
@@ -22,6 +26,28 @@ const yamlParser = require('js-yaml');
 let config = getJekyllConfig('./_config.yml');
 
 sassProcessor.compiler = require('node-sass');
+
+function deployGithubPage() {
+	let commitMessage = 'Deployed via Gulp';
+	ioManager.question('Commit message: ', (answer) => {
+		commitMessage = answer;
+		ioManager.close();
+	});
+	let deployScript = [
+		'git add .',
+		`git commit --all --message "${commitMessage}" --cleanup=strip`,
+		'git push origin master'
+	];
+	return processManager.exec(deployScript.join(' && '), (exception, stdout, stderr) => {
+		if (exception) {
+			console.log(`GitHub deployment failed with code ${exception.code}`);
+			console.log(exception.stack);
+		}
+		if (stderr) console.error(stderr);
+		console.log(stdout);
+		return;
+	});
+}
 
 function getJekyllConfig(configFilePath) {
 	try {
@@ -41,12 +67,12 @@ function getJekyllConfig(configFilePath) {
 function jekyllClean() {
 	return processManager.exec('bundle exec jekyll clean', (exception, stdout, stderr) => {
 		if (exception) {
+			console.log(`Jekyll cleanup failed with code ${exception.code}`);
 			console.log(exception.stack);
-			console.log(`Child process exited with code ${exception.code}`);
-			return;
 		}
 		if (stderr) console.error(stderr);
 		console.log(stdout);
+		return;
 	});
 }
 
@@ -142,3 +168,4 @@ function watchForChanges() {
 
 exports.clean = jekyllClean;
 exports.default = gulp.series(jekyllClean, jekyllBuild, loadAssets(), watchForChanges);
+exports.deploy = deployGithubPage;
