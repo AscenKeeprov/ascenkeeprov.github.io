@@ -28,24 +28,22 @@ let config = getJekyllConfig('./_config.yml');
 sassProcessor.compiler = require('node-sass');
 
 function deployGithubPage() {
-	let commitMessage = 'Deployed via Gulp';
-	ioManager.question('Commit message: ', (answer) => {
-		commitMessage = answer;
+	ioManager.question('Commit message: ', (message) => {
+		let deployScript = [
+			'git add .',
+			`git commit --all --message "${message}" --cleanup=strip`,
+			'git push origin master'
+		].join(' && ');
 		ioManager.close();
-	});
-	let deployScript = [
-		'git add .',
-		`git commit --all --message "${commitMessage}" --cleanup=strip`,
-		'git push origin master'
-	];
-	return processManager.exec(deployScript.join(' && '), (exception, stdout, stderr) => {
-		if (exception) {
-			console.log(`GitHub deployment failed with code ${exception.code}`);
-			console.log(exception.stack);
-		}
-		if (stderr) console.error(stderr);
-		console.log(stdout);
-		return;
+		return processManager.exec(deployScript, (exception, stdout, stderr) => {
+			if (exception) {
+				console.log(`GitHub deployment failed with code ${exception.code}`);
+				console.log(exception.stack);
+			}
+			if (stderr) console.error(stderr);
+			console.log(stdout);
+			return;
+		});
 	});
 }
 
