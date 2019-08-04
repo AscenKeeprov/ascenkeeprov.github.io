@@ -54,7 +54,7 @@ function getJekyllConfig(configFilePath) {
 		configObj.assetsPath = `./${jekyllConfig.assets_dir}`;
 		configObj.collectionsPath = `./${jekyllConfig.collections_dir}`;
 		configObj.layoutsPath = `./${jekyllConfig.layouts_dir}`;
-		configObj.outputPath = jekyllConfig.destination;
+		configObj.outputPath = `./${jekyllConfig.destination}`;
 		configObj.partialsPath = `./${jekyllConfig.includes_dir}`;
 		configObj.deployUrl = `git@github.com:${jekyllConfig.repository}`;
 		return configObj;

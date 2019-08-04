@@ -1,4 +1,5 @@
 *, *::after, *::before {
+	border: none;
 	box-sizing: inherit;
 	margin: 0;
 	padding: 0;
@@ -10,4 +11,10 @@ address {
 
 html {
 	box-sizing: border-box;
+	line-height: 1.5;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }

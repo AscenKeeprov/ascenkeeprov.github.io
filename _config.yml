@@ -3,7 +3,7 @@ baseurl: ""
 collections:
   - certificates
 collections_dir: _collections
-destination: ./docs
+destination: docs
 
 exclude:
   - .vs
@@ -14,7 +14,6 @@ exclude:
   - gulpfile.js
   - LICENSE
   - node_modules
-  - npm-shrinkwrap.json
   - package.json
   - package-lock.json
   - README.md
