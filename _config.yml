@@ -1,3 +1,4 @@
+assets_dir: _assets
 baseurl: ""
 collections_dir: collections
 destination: ./docs
@@ -11,6 +12,7 @@ exclude:
   - gulpfile.js
   - LICENSE
   - node_modules
+  - npm-shrinkwrap.json
   - package.json
   - package-lock.json
   - README.md
@@ -32,12 +34,14 @@ github:
   project_tagline: "Asen Kiprov's personal GitHub page."
   show_downloads: false
 
+includes_dir: _includes
 incremental: true
 
 kramdown:
   input: GFM
   show_warnings: true
 
+layouts_dir: _layouts
 port: 8080
 repository: AscenKeeprov/ascenkeeprov.github.io
 theme: null
