@@ -6,8 +6,10 @@ const cssPrefixer = require('autoprefixer');
 const cssProcessor = require('gulp-postcss');
 const fileCombiner = require('gulp-concat');
 const fileManager = require('fs');
+const fontsDirName = 'fonts';
 const gulp = require('gulp');
 const imageMinifier = require('gulp-imagemin');
+const imagesDirName = 'images';
 const ioManager = require('readline').createInterface({
 	input: process.stdin,
 	output: process.stdout
@@ -16,6 +18,8 @@ const jsMinifier = require('gulp-terser');
 const processManager = require('child_process');
 const sassProcessor = require('gulp-sass');
 const sourceMapper = require('gulp-sourcemaps');
+const scriptsDirName = 'scripts';
+const stylesDirName = 'styles';
 const supportedFontTypes = '{ttf,woff?(2)}';
 const supportedImageTypes = '{gif,ico,jp?(e)g,png}';
 const supportedPageTypes = 'html';
@@ -63,6 +67,10 @@ function getJekyllConfig(configFilePath) {
 	}
 }
 
+function jekyllBuild() {
+	return processManager.spawn('bundle', ['exec', 'jekyll', 'build'], { shell: true, stdio: 'inherit' });
+}
+
 function jekyllClean() {
 	return processManager.exec('bundle exec jekyll clean', (exception, stdout, stderr) => {
 		if (exception) {
@@ -75,36 +83,32 @@ function jekyllClean() {
 	});
 }
 
-function jekyllBuild() {
-	return processManager.spawn('bundle', ['exec', 'jekyll', 'build'], { shell: true, stdio: 'inherit' });
-}
-
 function loadAssets() {
 	return gulp.parallel(loadScripts, loadStyles, loadImages, loadFonts);
 }
 
 function loadFonts() {
-	return gulp.src(`${config.assetsPath}/fonts/**/*.${supportedFontTypes}`)
-		.pipe(gulp.dest(`${config.outputPath}/fonts`));
+	return gulp.src(`${config.assetsPath}/${fontsDirName}/**/*.${supportedFontTypes}`)
+		.pipe(gulp.dest(`${config.outputPath}/${fontsDirName}`));
 }
 
 function loadImages() {
-	return gulp.src(`${config.assetsPath}/images/**/*.${supportedImageTypes}`)
+	return gulp.src(`${config.assetsPath}/${imagesDirName}/**/*.${supportedImageTypes}`)
 		.pipe(imageMinifier())
-		.pipe(gulp.dest(`${config.outputPath}/images`));
+		.pipe(gulp.dest(`${config.outputPath}/${imagesDirName}`));
 }
 
 function loadScripts() {
-	return gulp.src(`${config.assetsPath}/scripts/**/*.${supportedScriptTypes}`)
+	return gulp.src(`${config.assetsPath}/${scriptsDirName}/**/*.${supportedScriptTypes}`)
 		.pipe(fileCombiner('site.min.js'))
 		.pipe(sourceMapper.init())
 		.pipe(jsMinifier())
 		.pipe(sourceMapper.write('./'))
-		.pipe(gulp.dest(`${config.outputPath}/scripts`));
+		.pipe(gulp.dest(`${config.outputPath}/${scriptsDirName}`));
 }
 
 function loadStyles() {
-	return gulp.src(`${config.assetsPath}/styles/**/*.${supportedStyleTypes}`)
+	return gulp.src(`${config.assetsPath}/${stylesDirName}/**/*.${supportedStyleTypes}`)
 		.pipe(sassProcessor({
 			indentType: 'tab',
 			indentWidth: 1,
@@ -118,53 +122,51 @@ function loadStyles() {
 		]))
 		.pipe(fileCombiner('site.min.css'))
 		.pipe(sourceMapper.write('./'))
-		.pipe(gulp.dest(`${config.outputPath}/styles`))
+		.pipe(gulp.dest(`${config.outputPath}/${stylesDirName}`))
 		.pipe(browserSync.stream({ match: '**/*.css' }));
 }
 
-function watchForChanges() {
+function watchForEvents() {
 	browserSync.init({
+		cors: true,
 		notify: false,
+		online: false,
 		port: 8080,
+		reloadDelay: 200,
+		reloadOnRestart: true,
 		server: { baseDir: `${config.outputPath}/` },
 		ui: { port: 9090 }
 	});
+
+	let eventNames = ['add', 'change', 'unlink'];
+
+	let fontSource = `${config.assetsPath}/${fontsDirName}/**/*.${supportedFontTypes}`;
+	let fontsReloadSequence = gulp.series(loadFonts, browserSync.reload);
+
+	let imageSource = `${config.assetsPath}/${imagesDirName}/**/*.${supportedImageTypes}`;
+	let imagesReloadSequence = gulp.series(loadImages, browserSync.reload);
 
 	let pageSource = [
 		`./*.${supportedPageTypes}`,
 		`${config.partialsPath}/**/*.${supportedPageTypes}`,
 		`${config.layoutsPath}/**/*.${supportedPageTypes}`
 	];
-	let jekyllRebuildSequence = gulp.series(jekyllBuild, loadAssets(), browserSync.reload);
-	gulp.watch(pageSource).on('add', jekyllRebuildSequence);
-	gulp.watch(pageSource).on('change', jekyllRebuildSequence);
-	gulp.watch(pageSource).on('unlink', jekyllRebuildSequence);
+	let pagesRebuildSequence = gulp.series(jekyllBuild, loadAssets(), browserSync.reload);
 
-	let fontsReloadSequence = gulp.series(loadFonts, browserSync.reload);
-	let fontSource = `${config.assetsPath}/fonts/**/*.${supportedFontTypes}`;
-	gulp.watch(fontSource).on('add', fontsReloadSequence);
-	gulp.watch(fontSource).on('change', fontsReloadSequence);
-	gulp.watch(fontSource).on('unlink', fontsReloadSequence);
-
-	let imagesReloadSequence = gulp.series(loadImages, browserSync.reload);
-	let imageSource = `${config.assetsPath}/images/**/*.${supportedImageTypes}`;
-	gulp.watch(imageSource).on('add', imagesReloadSequence);
-	gulp.watch(imageSource).on('change', imagesReloadSequence);
-	gulp.watch(imageSource).on('unlink', imagesReloadSequence);
-
+	let scriptSource = `${config.assetsPath}/${scriptsDirName}/**/*.${supportedScriptTypes}`;
 	let scriptsReloadSequence = gulp.series(loadScripts, browserSync.reload);
-	let scriptSource = `${config.assetsPath}/scripts/**/*.${supportedScriptTypes}`;
-	gulp.watch(scriptSource).on('add', scriptsReloadSequence);
-	gulp.watch(scriptSource).on('change', scriptsReloadSequence);
-	gulp.watch(scriptSource).on('unlink', scriptsReloadSequence);
 
-	let stylesReloadSequence = gulp.series(loadStyles, browserSync.reload);
-	let styleSource = `${config.assetsPath}/styles/**/*.${supportedStyleTypes}`;
-	gulp.watch(styleSource).on('add', stylesReloadSequence);
-	gulp.watch(styleSource).on('change', stylesReloadSequence);
-	gulp.watch(styleSource).on('unlink', stylesReloadSequence);
+	let styleSource = `${config.assetsPath}/${stylesDirName}/**/*.${supportedStyleTypes}`;
+	gulp.watch(styleSource, { watchEvents: eventNames }, loadStyles);
+
+	for (let eventName of eventNames) {
+		gulp.watch(fontSource).on(eventName, fontsReloadSequence);
+		gulp.watch(imageSource).on(eventName, imagesReloadSequence);
+		gulp.watch(pageSource).on(eventName, pagesRebuildSequence);
+		gulp.watch(scriptSource).on(eventName, scriptsReloadSequence);
+	}
 }
 
 exports.clean = jekyllClean;
-exports.default = gulp.series(jekyllClean, jekyllBuild, loadAssets(), watchForChanges);
+exports.default = gulp.series(jekyllClean, jekyllBuild, loadAssets(), watchForEvents);
 exports.deploy = deployGithubPage;
