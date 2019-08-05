@@ -17,11 +17,11 @@
 a {
 	color: var(--color-grass, forestgreen);
 	text-decoration: none;
-}
 
-	a::before {
+	&::before {
 		font-family: Font-Awesome-Solid, Font-Awesome-Brands;
 	}
+}
 
 html {
 	font-family: sans-serif;
@@ -34,63 +34,59 @@ html {
 	font-variant-numeric: oldstyle-nums;
 	letter-spacing: var(--letter-spacing-punch-card, 1rem);
 	user-select: none;
-}
 
-	.punch-card::before {
+	&::before {
 		letter-spacing: initial;
 		text-align: right;
 	}
 
-	.punch-card a {
+	& a {
 		color: inherit;
-		text-decoration: none;
 		transition-duration: var(--transition-duration-default, 1s);
 		transition-timing-function: var(--transition-timing-function-default, ease-in-out);
 		transition-property: color;
-	}
 
-		.punch-card a:focus,
-		.punch-card a:focus .punch-hole,
-		.punch-card a:hover,
-		.punch-card a:hover .punch-hole {
+		&:focus,
+		&:hover {
 			color: initial;
 			font-weight: var(--font-weight-bolder, 900);
 			letter-spacing: initial;
-		}
 
-	.punch-card .punch-hole {
+			& .punch-hole {
+				color: inherit;
+				font-weight: inherit;
+				letter-spacing: inherit;
+			}
+		}
+	}
+
+	& .punch-hole {
 		color: transparent;
 		letter-spacing: initial;
 	}
 
-.punch-card-row:hover a,
-.punch-card-row:hover a .punch-hole {
-	color: initial;
-	font-weight: var(--font-weight-bolder, 900);
-	letter-spacing: initial;
-	user-select: text;
-}
+	&-row {
+		white-space: nowrap;
 
-@media (min-width: 1366px) {
-	html {
-		font-size: var(--font-size-small, 14px);
-	}
-}
+		&:hover {
+			user-select: text;
 
-@media (min-width: 1920px) {
-	html {
-		font-size: var(--font-size-medium, 16px);
-	}
-}
+			& a {
+				color: initial;
+				font-weight: var(--font-weight-bolder, 900);
+				letter-spacing: initial;
 
-@media (min-width: 2560px) {
-	html {
-		font-size: var(--font-size-large, 18px);
-	}
-}
+				& .punch-hole {
+					color: inherit;
+					font-weight: inherit;
+					letter-spacing: inherit;
+				}
+			}
+		}
 
-@media (min-width: 3840px) {
-	html {
-		font-size: var(--font-size-huge, 20px);
+		&:last-child {
+			font-size: 0.625em;
+			letter-spacing: initial;
+		}
 	}
 }
