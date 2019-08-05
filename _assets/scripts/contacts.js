@@ -1,8 +1,9 @@
 const punchCardClassName = 'punch-card';
-const punchCardMaxRowSlots = 37;
 const punchCardRowClassName = 'punch-card-row';
-const punchStyle = 'class="punch-hole"';
-const punchTag = 'mark';
+const punchCardRowsCount = 10;
+const punchCardRowSlotsCount = 38;
+const punchHoleStyleAttribute = 'class="punch-hole"';
+const punchHoleTagName = 'mark';
 
 function createPunchCardRow() {
 	let punchCardRow = document.createElement('div');
@@ -10,25 +11,32 @@ function createPunchCardRow() {
 	return punchCardRow;
 }
 
-function populatePunchCardRow(row, rowIndex, rowSlots) {
+function populatePunchCardRow(row, rowIndex) {
 	let htmlContent = '';
-	for (let rowSlot = 1; rowSlot <= rowSlots; rowSlot++) {
-		let punchSlots = [2, 5, 10, 14, 16, 22, 25]
-			.map(ps => ps * (rowIndex + 1) % rowSlots);
-		if (punchSlots.includes(rowSlot)) {
-			let punchHole = document.createElement(punchTag);
-			punchHole.setAttribute(punchStyle.split('=')[0], punchStyle.split('=')[1].replace(/"/g, ''));
-			punchHole.textContent = `${rowIndex}`;
-			htmlContent += punchHole.outerHTML;
-		} else htmlContent += `${rowIndex}`;
+	if (rowIndex < punchCardRowsCount) {
+		for (let rowSlot = 1; rowSlot <= punchCardRowSlotsCount; rowSlot++) {
+			let punchSlots = [2, 5, 10, 14, 16, 22, 25, 31, 34]
+				.map(ps => ps * (rowIndex + 1) % punchCardRowSlotsCount);
+			if (punchSlots.includes(rowSlot)) {
+				let punchHole = document.createElement(punchHoleTagName);
+				punchHole.setAttribute(punchHoleStyleAttribute.split('=')[0],
+					punchHoleStyleAttribute.split('=')[1].replace(/"/g, ''));
+				punchHole.textContent = `${rowIndex}`;
+				htmlContent += punchHole.outerHTML;
+			} else htmlContent += `${rowIndex}`;
+		}
+	} else if (rowIndex == punchCardRowsCount) {
+		for (let rowSlot = 1; rowSlot <= punchCardRowSlotsCount * 2; rowSlot++) {
+			htmlContent += `${rowSlot} `;
+		}
 	}
 	row.innerHTML = htmlContent;
 }
 
-function populatePunchCardRows(card, rowIndexStart, rowIndexEnd, rowSlots) {
+function populatePunchCardRows(card, rowIndexStart, rowIndexEnd) {
 	for (let rowIndex = rowIndexStart; rowIndex <= rowIndexEnd; rowIndex++) {
 		let punchCardRow = createPunchCardRow();
-		populatePunchCardRow(punchCardRow, rowIndex, rowSlots);
+		populatePunchCardRow(punchCardRow, rowIndex);
 		card.appendChild(punchCardRow);
 	}
 }
@@ -39,28 +47,25 @@ punchCards.forEach((punchCard) => {
 		.filter(child => child.className.includes(`${punchCardRowClassName}`));
 	if (punchCardRows.length == 0) {
 		punchCard.innerHTML == '';
-		populatePunchCardRows(punchCard, 0, 9, punchCardMaxRowSlots);
+		populatePunchCardRows(punchCard, 0, punchCardRowsCount);
 	}
 	else {
 		Array.from(punchCard.children)
 			.filter(child => !child.className.includes(`${punchCardRowClassName}`))
 			.forEach(oddChild => punchCard.removeChild(oddChild));
-		for (let rowIndex = 0; rowIndex <= 9; rowIndex++) {
+		for (let rowIndex = 0; rowIndex <= punchCardRowsCount; rowIndex++) {
 			if (rowIndex < punchCardRows.length) {
 				let punchCardRow = punchCardRows[rowIndex];
-				if (punchCardRow.innerHTML == '') populatePunchCardRow(punchCardRow, rowIndex, punchCardMaxRowSlots);
+				if (punchCardRow.innerHTML == '') populatePunchCardRow(punchCardRow, rowIndex);
 				else {
-					let rowIcons = punchCardRow.querySelectorAll('.icon');
-					let rowTextContent = punchCardRow.textContent.trim();
-					let rowFreeSlots = punchCardMaxRowSlots - rowTextContent.length - rowIcons.length;
 					let rowFiller = document.createElement('span');
-					populatePunchCardRow(rowFiller, rowIndex, rowFreeSlots);
+					populatePunchCardRow(rowFiller, rowIndex);
 					if (rowIndex % 2 !== 0) punchCardRow.innerHTML = `${punchCardRow.innerHTML}${rowFiller.outerHTML}`;
 					else punchCardRow.innerHTML = `${rowFiller.outerHTML}${punchCardRow.innerHTML}`;
 				}
 			} else {
 				let punchCardRow = createPunchCardRow();
-				populatePunchCardRow(punchCardRow, rowIndex, punchCardMaxRowSlots);
+				populatePunchCardRow(punchCardRow, rowIndex);
 				punchCard.appendChild(punchCardRow);
 			}
 		}
