@@ -1,5 +1,5 @@
 const punchCardClassName = 'punch-card';
-const punchCardRowClassName = 'punch-card-row';
+const punchCardRowClassName = `${punchCardClassName}-row`;
 const punchCardRowsCount = 10;
 const punchCardRowSlotsCount = 38;
 const punchHoleStyleAttribute = 'class="punch-hole"';
@@ -59,6 +59,7 @@ punchCards.forEach((punchCard) => {
 				if (punchCardRow.innerHTML == '') populatePunchCardRow(punchCardRow, rowIndex);
 				else {
 					let rowFiller = document.createElement('span');
+					rowFiller.className = `${punchCardRowClassName}-filler`;
 					populatePunchCardRow(rowFiller, rowIndex);
 					if (rowIndex % 2 !== 0) punchCardRow.innerHTML = `${punchCardRow.innerHTML}${rowFiller.outerHTML}`;
 					else punchCardRow.innerHTML = `${rowFiller.outerHTML}${punchCardRow.innerHTML}`;

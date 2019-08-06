@@ -14,6 +14,10 @@
 	src: url(../fonts/fa-solid-900.woff2) format("woff2"), url(../fonts/fa-solid-900.woff) format("woff"), url(../fonts/fa-solid-900.ttf) format("truetype");
 }
 
+$font-size-tiny: var(--font-size-tiny, 12px);
+$font-weight-bolder: var(--font-weight-bolder, 900);
+$letter-spacing-punch-card: var(--letter-spacing-punch-card, 1rem);
+
 a {
 	color: var(--color-grass, forestgreen);
 	text-decoration: none;
@@ -25,14 +29,14 @@ a {
 
 html {
 	font-family: sans-serif;
-	font-size: var(--font-size-tiny, 12px);
+	font-size: $font-size-tiny;
 }
 
 .punch-card {
-	color: var(--color-greyn, darkgrey);
+	color: var(--color-greyn, darkgray);
 	font-family: Consolas;
 	font-variant-numeric: oldstyle-nums;
-	letter-spacing: var(--letter-spacing-punch-card, 1rem);
+	letter-spacing: $letter-spacing-punch-card;
 	user-select: none;
 
 	&::before {
@@ -41,21 +45,17 @@ html {
 	}
 
 	& a {
+		@extend %transition;
 		color: inherit;
-		transition-duration: var(--transition-duration-default, 1s);
-		transition-timing-function: var(--transition-timing-function-default, ease-in-out);
 		transition-property: color;
 
 		&:focus,
 		&:hover {
-			color: initial;
-			font-weight: var(--font-weight-bolder, 900);
-			letter-spacing: initial;
+			@extend %text-initial;
+			font-weight: $font-weight-bolder;
 
 			& .punch-hole {
-				color: inherit;
-				font-weight: inherit;
-				letter-spacing: inherit;
+				@extend %text-inherit;
 			}
 		}
 	}
@@ -72,14 +72,11 @@ html {
 			user-select: text;
 
 			& a {
-				color: initial;
-				font-weight: var(--font-weight-bolder, 900);
-				letter-spacing: initial;
+				@extend %text-initial;
+				font-weight: $font-weight-bolder;
 
 				& .punch-hole {
-					color: inherit;
-					font-weight: inherit;
-					letter-spacing: inherit;
+					@extend %text-inherit;
 				}
 			}
 		}

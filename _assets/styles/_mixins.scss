@@ -1,0 +1,33 @@
+@mixin layer($layerIndex) {
+	display: block;
+	content: "";
+	position: absolute;
+
+	@if is-integer($layerIndex) {
+		z-index: $layerIndex;
+	}
+	@else {
+		z-index: auto;
+	}
+}
+
+@mixin link-icon($attributeSelector, $attributeValue) {
+	@if $attributeSelector != "~" and $attributeSelector != "|" and $attributeSelector != "^" and $attributeSelector != "$" and $attributeSelector != "*" {
+		@error "Invalid attribute selector: #{$attributeSelector}!";
+	}
+	@else {
+		&[href#{$attributeSelector}="#{$attributeValue}"]::before {
+			@content;
+		}
+	}
+}
+
+@mixin media($feature-name, $feature-value, $map: null) {
+	@if $map != null and map-has-key($map, $feature-value) {
+		$feature-value: map-get($map, $feature-value);
+	}
+
+	@media ($feature-name: #{$feature-value}) {
+		@content;
+	}
+}

@@ -1,186 +1,25 @@
-@media (min-width: 660px) {
-	.punch-card-row > span + address {
-		padding-right: 1.25em;
+html {
+	@each $min-width, $font-size in $page-font-sizes {
+		@media (min-width: #{$min-width}) {
+			font-size: #{$font-size};
+		}
 	}
 }
 
-@media (min-width: 690px) {
-	.punch-card-row > span + address {
-		padding-right: 1.375em;
-	}
-}
-
-@media (min-width: 720px) {
-	.punch-card-row > span + address {
-		padding-right: 1.25em;
-	}
-}
-
-@media (min-width: 760px) {
-	.punch-card-row::after {
-		background-color: transparent;
+.punch-card-row {
+	&::after {
+		@each $min-width, $width in $punch-card-row-masks {
+			@media (min-width: #{$min-width}) {
+				width: #{$width};
+			}
+		}
 	}
 
-	.punch-card-row > span + address {
-		padding-right: 0.375em;
-	}
-}
-
-@media (min-width: 790px) {
-	.punch-card-row::after {
-		background-color: var(--color-papyrus, lightgoldenrodyellow);
-	}
-
-	.punch-card-row > span + address {
-		padding-right: 1.125em;
-	}
-}
-
-@media (min-width: 820px) {
-	.punch-card-row::after {
-		background-color: transparent;
-		width: 0.625em;
-	}
-
-	.punch-card-row > span + address {
-		padding-right: 1.625em;
-	}
-}
-
-@media (min-width: 850px) {
-	.punch-card-row > span + address {
-		padding-right: 0.875em;
-	}
-}
-
-@media (min-width: 950px) {
-	.punch-card-row > span + address {
-		padding-right: 1.625em;
-	}
-}
-
-@media (min-width: 1010px) {
-	.punch-card-row::after {
-		width: 0.5em;
-	}
-
-	.punch-card-row > span + address {
-		padding-right: 0.25em;
-	}
-}
-
-@media (min-width: 1040px) {
-	.punch-card-row::after {
-		background-color: var(--color-papyrus, lightgoldenrodyellow);
-	}
-
-	.punch-card-row > span + address {
-		padding-right: 1.375em;
-	}
-}
-
-@media (min-width: 1110px) {
-	.punch-card-row::after {
-		background-color: transparent;
-		width: 0.625em;
-	}
-
-	.punch-card-row > span + address {
-		padding-right: 1.625em;
-	}
-}
-
-@media (min-width: 1170px) {
-	.punch-card-row::after {
-		background-color: var(--color-papyrus, lightgoldenrodyellow);
-	}
-
-	.punch-card-row > span + address {
-		padding-right: 1.125em;
-	}
-}
-
-@media (min-width: 1360px) {
-	html {
-		font-size: var(--font-size-small, 14px);
-	}
-
-	.punch-card-row > span + address {
-		padding-right: 1.375em;
-	}
-}
-
-@media (min-width: 1470px) {
-	.punch-card-row::after {
-		background-color: transparent;
-		width: 0.5em;
-	}
-
-	.punch-card-row > span + address {
-		padding-right: 0.375em;
-	}
-}
-
-@media (min-width: 1600px) {
-	.punch-card-row::after {
-		background-color: var(--color-papyrus, lightgoldenrodyellow);
-	}
-
-	.punch-card-row > span + address {
-		padding-right: 0.75em;
-	}
-}
-
-@media (min-width: 1760px) {
-	.punch-card-row > span + address {
-		padding-right: 1.125em;
-	}
-}
-
-@media (min-width: 1920px) {
-	html {
-		font-size: var(--font-size-medium, 16px);
-	}
-
-	.punch-card-row > span + address {
-		padding-right: 1.0625em;
-	}
-}
-
-@media (min-width: 2140px) {
-	.punch-card-row > span + address {
-		padding-right: 1.1875em;
-	}
-}
-
-@media (min-width: 2400px) {
-	.punch-card-row > span + address {
-		padding-right: 1.5em;
-	}
-}
-
-@media (min-width: 2560px) {
-	html {
-		font-size: var(--font-size-large, 18px);
-	}
-}
-
-@media (min-width: 2750px) {
-	.punch-card-row::after {
-		background-color: transparent;
-	}
-
-	.punch-card-row > span + address {
-		padding-right: 0.75em;
-	}
-}
-
-@media (min-width: 3840px) {
-	html {
-		font-size: var(--font-size-huge, 20px);
-	}
-
-	.punch-card-row > span + address {
-		padding-right: 1em;
+	& > &-filler + address {
+		@each $min-width, $padding-right in $punch-card-address-paddings {
+			@media (min-width: #{$min-width}) {
+				padding-right: #{$padding-right};
+			}
+		}
 	}
 }

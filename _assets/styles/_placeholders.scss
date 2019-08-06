@@ -1,0 +1,26 @@
+$transition-duration-default: var(--transition-duration-default, 1s) !default;
+$transition-timing-function-default: var(--transition-timing-function-default, ease-in-out) !default;
+
+%flex-center {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+}
+
+%text-inherit {
+	color: inherit;
+	font-weight: inherit;
+	letter-spacing: inherit;
+}
+
+%text-initial {
+	color: initial;
+	font-weight: initial;
+	letter-spacing: initial;
+}
+
+%transition {
+	transition-duration: $transition-duration-default;
+	transition-property: all;
+	transition-timing-function: $transition-timing-function-default;
+}

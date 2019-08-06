@@ -1,0 +1,14 @@
+$breakpoint-4K: 3840px;
+$breakpoint-FHD: 1920px;
+$breakpoint-laptop: 1360px;
+$breakpoint-UW-FHD: 2560px;
+$font-size-huge: var(--font-size-huge, 20px);
+$font-size-large: var(--font-size-large, 18px);
+$font-size-medium: var(--font-size-medium, 16px);
+$font-size-small: var(--font-size-small, 14px);
+
+$page-font-sizes: ( $breakpoint-laptop: $font-size-small, $breakpoint-FHD: $font-size-medium, $breakpoint-UW-FHD: $font-size-large, $breakpoint-4K: $font-size-huge );
+
+$punch-card-address-paddings: ( 660px: 1.25em, 690px: 1.375em, 720px: 1.25em, 760px: 0.375em, 790px: 1.125em, 820px: 1.625em, 850px: 0.875em, 950px: 1.625em, 1010px: 0.25em, 1040px: 1.375em, 1110px: 1.625em, 1170px: 1.125em, $breakpoint-laptop: 1.375em, 1470px: 0.375em, 1600px: 0.75em, 1760px: 1.125em, $breakpoint-FHD: 1.0625em, 2140px: 1.1875em, 2400px: 1.5em, 2750px: 0.75em, $breakpoint-4K: 1em, );
+
+$punch-card-row-masks: ( 630px: 0.625em, 760px: 0.25em, 820px: 0.625em, 950px: 0.875em, 1010px: 0.125em, 1040px: 0.25em, 1110px: 0.625em, 1360px: 0.375em, 1470px: 0.25em, 1600px: 0.5em, );

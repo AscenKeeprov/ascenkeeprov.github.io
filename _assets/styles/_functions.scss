@@ -1,0 +1,7 @@
+@function is-number($value) {
+	@return type-of($value) == 'number';
+}
+
+@function is-integer($value) {
+	@return is-number($value) and round($value) == $value;
+}

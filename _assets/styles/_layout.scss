@@ -1,185 +1,190 @@
-a[href^="https://github"]::before {
-	content: "\f09b";
+$color-apparition: var(--color-apparition, ghostwhite);
+$color-greyn: var(--color-greyn, darkgray);
+$color-papyrus: var(--color-papyrus, lightgoldenrodyellow);
+$color-shadow: var(--color-shadow, rgba(0,0,0,0.2));
+$margin-punch-card-item: var(--letter-spacing-punch-card, 1rem);
+$padding-x-punch-card: var(--padding-x-punch-card, 1.5em);
+$padding-y-punch-card: var(--padding-y-punch-card, 1em);
+
+%punch-card-link-onhover {
+	&::before {
+		margin-right: calc(#{$margin-punch-card-item} / 2);
+	}
+
+	.punch-hole {
+		background-color: inherit;
+		box-shadow: none;
+		margin-right: 0;
+	}
 }
 
-a[href^="mailto:"]::before {
-	content: "\f199";
-}
+a {
+	@include link-icon("*", "github") {
+		content: "\f09b";
+	}
 
-a[href^="tel:"]::before {
-	content: "\f3cd";
-}
+	@include link-icon("^", "mailto:") {
+		content: "\f199";
+	}
 
-a.link-folder > span {
-	border-color: var(--color-grass, forestgreen);
-	border-left-style: solid;
-	border-left-width: 0.25em;
-	padding: 0.125em;
-	transition: border-bottom 0.0625s 0.4375s, border-color 1s, border-left 1s, border-right 0.25s 0.75s, border-top 0.0625s 0.4375s;
-}
+	@include link-icon("^", "tel:") {
+		content: "\f3cd";
+	}
 
-a.link-folder > span:hover {
-	border-bottom-style: dashed;
-	border-bottom-width: 0.0625em;
-	border-left-width: 0;
-	border-right-style: solid;
-	border-right-width: 0.125em;
-	border-top-style: dashed;
-	border-top-width: 0.0625em;
+	&.link-folder > span {
+		border-color: var(--color-grass, forestgreen);
+		border-left-style: solid;
+		border-left-width: 0.25em;
+		padding: 0.125em;
+		transition: border-bottom 0.0625s 0.4375s, border-color 1s, border-left 1s, border-right 0.25s 0.75s, border-top 0.0625s 0.4375s;
+
+		&:hover {
+			border-bottom-style: dashed;
+			border-bottom-width: 0.0625em;
+			border-left-width: 0;
+			border-right-style: solid;
+			border-right-width: 0.125em;
+			border-top-style: dashed;
+			border-top-width: 0.0625em;
+		}
+	}
 }
 
 body {
-	background-color: var(--color-body, ghostwhite);
-}
-
-main.page-content {
-	height: 100vh;
+	background-color: $color-apparition;
 }
 
 section {
-	align-items: center;
-	display: flex;
-	filter: drop-shadow(-0.25em 0.25em 0.5em var(--color-shadow, rgba(0,0,0,0.2)));
+	@extend %flex-center;
+	filter: drop-shadow(-0.25em 0.25em 0.5em $color-shadow);
 	height: 100%;
-	justify-content: center;
+}
+
+.page-content {
+	height: 100vh;
 }
 
 .punch-card {
-	background-color: var(--color-papyrus, lightgoldenrodyellow);
+	background-color: $color-papyrus;
 	border-radius: 0.75em;
 	clip-path: polygon(5% 0, 100% 0, 100% 100%, 0 100%, 0 10%);
 	display: flex;
 	flex-direction: column;
 	height: 360px;
 	overflow: hidden;
-	padding-bottom: var(--padding-y-punch-card, 1em);
-	padding-left: var(--padding-x-punch-card, 1.5em);
-	padding-right: var(--padding-x-punch-card, 1.5em);
-	padding-top: calc(var(--padding-y-punch-card, 1em) * 4);
+	padding-bottom: $padding-y-punch-card;
+	padding-left: $padding-x-punch-card;
+	padding-right: $padding-x-punch-card;
+	padding-top: calc(#{$padding-y-punch-card} * 4);
 	position: relative;
 	width: 740px;
-}
 
-.punch-card::after {
-	border-color: var(--color-greyn, darkgrey);
-	border-style: solid;
-	border-width: 0 1px;
-	bottom: var(--padding-y-punch-card, 1em);
-	display: block;
-	content: "";
-	left: var(--padding-x-punch-card, 1.5em);
-	right: var(--padding-x-punch-card, 1.5em);
-	position: absolute;
-	top: var(--padding-y-punch-card, 4em);
-	z-index: -1;
-}
+	&::after {
+		@include layer(-1);
+		border-color: $color-greyn;
+		border-style: solid;
+		border-width: 0 1px;
+		bottom: $padding-y-punch-card;
+		left: $padding-x-punch-card;
+		right: $padding-x-punch-card;
+		top: $padding-y-punch-card;
+	}
 
-.punch-card::before {
-	background-color: inherit;
-	display: block;
-	content: "3-1A-1S9.265ES :=: 1.A14 | z857";
-	filter: brightness(90%) hue-rotate(120deg);
-	height: 1.75em;
-	margin-left: -1.3em;
-	margin-top: -3.8em;
-	padding-right: 2em;
-	position: absolute;
-	width: 100%;
-	z-index: -2;
-}
+	&::before {
+		@include layer(-2);
+		background-color: inherit;
+		content: "3-1A-1S9.265ES :=: 1.A14 | z857";
+		filter: brightness(90%) hue-rotate(120deg);
+		height: 1.75em;
+		margin-left: -1.3em;
+		margin-top: -3.8em;
+		padding-right: 2em;
+		width: 100%;
+	}
 
-.punch-card a,
-.punch-card address {
-	align-items: center;
-	box-shadow: -0.25em 0 var(--color-papyrus, lightgoldenrodyellow);
-	display: inline-flex;
-}
+	a {
+		&::before {
+			max-width: 1.5em;
+		}
 
-.punch-card a:focus ::before,
-.punch-card a:hover ::before {
-	margin-right: calc(var(--letter-spacing-punch-card, 1rem) / 2);
-}
+		&:focus,
+		&:hover {
+			@extend %punch-card-link-onhover;
+		}
+	}
 
-.punch-card a:focus .punch-hole,
-.punch-card a:hover .punch-hole {
-	background-color: inherit;
-	box-shadow: none;
-	margin-right: 0;
-}
+	a, address {
+		align-items: center;
+		box-shadow: -0.25em 0 $color-papyrus;
+		display: inline-flex;
+	}
 
-.punch-card a::before {
-	max-width: 1.5em;
-}
+	.punch-hole {
+		@extend %transition;
+		background-color: $color-apparition;
+		box-shadow: inset -1px 1px $color-greyn;
+		margin-right: $margin-punch-card-item;
+		transition-property: background, margin;
+	}
 
-.punch-card > .punch-card-row:nth-child(2),
-.punch-card > .punch-card-row:nth-child(6) {
-	border-top: 1px dashed var(--color-greyn, darkgrey);
-}
+	&-row {
+		align-items: center;
+		display: flex;
+		flex-basis: 100%;
+		overflow: hidden;
+		padding-left: 1em;
+		position: relative;
 
-.punch-card > .punch-card-row:nth-last-child(1) {
-	border-top: 3px double var(--color-greyn, darkgrey);
-}
+		&::after {
+			@extend %transition;
+			background-color: $color-papyrus;
+			bottom: 0;
+			content: "";
+			display: block;
+			position: absolute;
+			right: 1px;
+			top: 0;
+			transition-property: width;
+			width: 0.5em;
+		}
 
-.punch-card .punch-hole {
-	background-color: var(--color-body, ghostwhite);
-	box-shadow: inset -1px 1px var(--color-greyn, darkgrey);
-	margin-right: var(--letter-spacing-punch-card, 1rem);
-	transition-duration: var(--transition-duration-default, 1s);
-	transition-property: background, margin;
-	transition-timing-function: var(--transition-timing-function-default, ease-in-out);
-}
+		&:hover {
+			a {
+				@extend %punch-card-link-onhover;
+			}
 
-.punch-card-row {
-	align-items: center;
-	display: flex;
-	flex-basis: 100%;
-	overflow: hidden;
-	padding-left: 1em;
-	position: relative;
-}
+			address {
+				margin: 0 auto;
+			}
 
-.punch-card-row::after {
-	background-color: var(--color-papyrus, lightgoldenrodyellow);
-	bottom: 0;
-	content: "";
-	display: block;
-	position: absolute;
-	right: 1px;
-	top: 0;
-	width: 0.5em;
-}
+			& > .punch-card-row-filler {
+				display: none;
+				opacity: 0;
+			}
+		}
 
-.punch-card-row:hover a::before {
-	margin-right: calc(var(--letter-spacing-punch-card, 1rem) / 2);
-}
+		&:nth-child(2),
+		&:nth-child(6) {
+			border-top: 1px dashed $color-greyn;
+		}
 
-.punch-card-row:hover a .punch-hole {
-	background-color: inherit;
-	box-shadow: none;
-	margin-right: 0;
-}
+		&:nth-last-child(1) {
+			border-top: 3px double $color-greyn;
+		}
 
-.punch-card-row:hover address {
-	margin: 0 auto;
-}
+		& > address:last-child > a > .punch-hole:last-child {
+			margin-right: 0;
+		}
 
-.punch-card-row:hover > span {
-	display: none;
-	opacity: 0;
-}
+		& > &-filler {
+			@extend %transition;
+			opacity: 1;
+			overflow: hidden;
+			transition-property: opacity;
 
-.punch-card-row > address:last-child > a > .punch-hole:last-child {
-	margin-right: 0;
-}
-
-.punch-card-row > span {
-	opacity: 1;
-	overflow: hidden;
-	transition-duration: var(--transition-duration-default, 1s);
-	transition-property: opacity;
-	transition-timing-function: var(--transition-timing-function-default, ease-in-out);
-}
-
-.punch-card-row > span + address {
-	padding-right: 1.625em;
+			+ address {
+				padding-right: 1.625em;
+			}
+		}
+	}
 }
