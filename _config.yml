@@ -35,6 +35,7 @@ github:
   project_tagline: "Asen Kiprov's personal GitHub page."
   show_downloads: false
 
+include: ["_pages"]
 includes_dir: _includes
 incremental: true
 
@@ -43,6 +44,7 @@ kramdown:
   show_warnings: true
 
 layouts_dir: _layouts
+pages_dir: _pages
 port: 8080
 repository: AscenKeeprov/ascenkeeprov.github.io
 theme: null

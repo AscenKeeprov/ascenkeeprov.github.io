@@ -1,0 +1,11 @@
+---
+layout: base
+permalink: /
+title: Index
+---
+<section class="index">
+	{% assign indexedPages = site.pages | where: "indexed" , "true" %}
+	{%- for page in indexedPages  -%}
+	{% include folder.html %}
+	{%- endfor -%}
+</section>

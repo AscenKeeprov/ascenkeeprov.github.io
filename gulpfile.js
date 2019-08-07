@@ -59,6 +59,7 @@ function getJekyllConfig(configFilePath) {
 		configObj.collectionsPath = `./${jekyllConfig.collections_dir}`;
 		configObj.layoutsPath = `./${jekyllConfig.layouts_dir}`;
 		configObj.outputPath = `./${jekyllConfig.destination}`;
+		configObj.pagesPath = `./${jekyllConfig.pages_dir}`;
 		configObj.partialsPath = `./${jekyllConfig.includes_dir}`;
 		configObj.deployUrl = `git@github.com:${jekyllConfig.repository}`;
 		return configObj;
@@ -148,6 +149,7 @@ function watchForEvents() {
 
 	let pageSource = [
 		`./*.${supportedPageTypes}`,
+		`${config.pagesPath}/**/*.${supportedPageTypes}`,
 		`${config.partialsPath}/**/*.${supportedPageTypes}`,
 		`${config.layoutsPath}/**/*.${supportedPageTypes}`
 	];
