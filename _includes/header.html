@@ -1,0 +1,20 @@
+{%- assign rootPage = site.pages | where: "root" , "true" -%}
+{%- assign breadcrumbs = page.url | split: "/" -%}
+{%- assign lastBreadcrumbIndex = breadcrumbs.size | minus: 1 -%}
+<header class="site-header">
+	<nav class="site-navigation">
+		<ul class="breadcrumbs">
+			{%- for i in (0..lastBreadcrumbIndex) -%}
+			{%- assign breadcrumb = breadcrumbs[i] -%}
+			{% assign breadcrumbName = breadcrumb | default: rootPage.first.title | capitalize %}
+			<li>
+				{%- if i == lastBreadcrumbIndex -%}
+				<span>{{ breadcrumbName }}</span>
+				{%- else -%}
+				<a href="/{{ breadcrumb }}{% if breadcrumb.size > 0 %}/{% endif %}">{{ breadcrumbName }}</a>
+				{%- endif -%}
+			</li>
+			{%- endfor -%}
+		</ul>
+	</nav>
+</header>

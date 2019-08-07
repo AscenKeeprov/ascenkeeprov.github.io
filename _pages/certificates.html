@@ -5,11 +5,11 @@ permalink: /certificates/
 title: Certificates
 ---
 <section class="certificates">
-	{% for collection in site.collections %}
-	{% if collection.label == "certificates" %}
-	{% for file in collection.files %}
+	{%- for collection in site.collections -%}
+	{%- if collection.label == "certificates" -%}
+	{%- for file in collection.files -%}
 	<img alt="{{ file.name | split: "." | first }}" src="{{ site.baseurl }}/certificates/{{ file.name }}" />
-	{% endfor %}
-	{% endif %}
-	{% endfor %}
+	{%- endfor -%}
+	{%- endif -%}
+	{%- endfor -%}
 </section>
