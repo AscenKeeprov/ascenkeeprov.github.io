@@ -1,10 +1,32 @@
+$animation-duration-default: var(--animation-duration-default, 2s) !default;
+$animation-iteration-count-default: var(--animation-iteration-count-default, infinite) !default;
+$animation-timing-function-default: var(--animation-timing-function-default, ease-in-out) !default;
 $transition-duration-default: var(--transition-duration-default, 1s) !default;
+$transition-property-default: var(--transition-property-default, all) !default;
 $transition-timing-function-default: var(--transition-timing-function-default, ease-in-out) !default;
+
+%animation {
+	animation-duration: $animation-duration-default;
+	animation-iteration-count: $animation-iteration-count-default;
+	animation-timing-function: $animation-timing-function-default;
+}
+
+%CLI {
+	font-family: Consolas;
+	user-select: none;
+}
 
 %flex-center {
 	align-items: center;
 	display: flex;
 	justify-content: center;
+}
+
+%overlay {
+	padding: 0.25em 0.5em;
+	position: fixed;
+	width: 100%;
+	z-index: 5;
 }
 
 %text-inherit {
@@ -21,6 +43,6 @@ $transition-timing-function-default: var(--transition-timing-function-default, e
 
 %transition {
 	transition-duration: $transition-duration-default;
-	transition-property: all;
+	transition-property: $transition-property-default;
 	transition-timing-function: $transition-timing-function-default;
 }

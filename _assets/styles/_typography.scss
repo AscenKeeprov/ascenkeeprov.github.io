@@ -19,6 +19,11 @@ $font-weight-bold: var(--font-weight-bold, bold);
 $font-weight-bolder: var(--font-weight-bolder, bolder);
 $letter-spacing-punch-card: var(--letter-spacing-punch-card, 1rem);
 
+%directory-separator {
+	color: scale-color($color-pitch, $alpha: -75%);
+	font-weight: $font-weight-bolder;
+}
+
 a {
 	color: var(--color-grass, forestgreen);
 	text-decoration: none;
@@ -34,17 +39,11 @@ html {
 	font-size: $font-size-tiny;
 }
 
-.directory-separator {
-	color: scale-color($color-pitch, $alpha: -75%);
-	font-weight: $font-weight-bolder;
-}
-
 .punch-card {
+	@extend %CLI;
 	color: var(--color-greyn, darkgray);
-	font-family: Consolas;
 	font-variant-numeric: oldstyle-nums;
 	letter-spacing: $letter-spacing-punch-card;
-	user-select: none;
 
 	&::before {
 		letter-spacing: initial;
@@ -96,6 +95,43 @@ html {
 }
 
 .site-footer {
-	font-family: Consolas;
-	user-select: none;
+	@extend %CLI;
+
+	.text-lighter {
+		@extend %directory-separator;
+	}
+}
+
+.site-header {
+	@extend %CLI;
+}
+
+.site-navigation {
+	.breadcrumb {
+		&::after,
+		&::before {
+			@extend %directory-separator;
+		}
+	}
+
+	.breadcrumbs {
+		&::after {
+			@extend %directory-separator;
+		}
+
+		&::before {
+			@extend %directory-separator;
+			font-size: smaller;
+			letter-spacing: 0.125em;
+			text-transform: uppercase;
+		}
+	}
+
+	.cursor {
+		@extend %directory-separator;
+	}
+}
+
+.text-larger {
+	font-size: larger;
 }

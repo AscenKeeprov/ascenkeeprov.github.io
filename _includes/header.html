@@ -7,7 +7,7 @@
 			{%- for i in (0..lastBreadcrumbIndex) -%}
 			{%- assign breadcrumb = breadcrumbs[i] -%}
 			{% assign breadcrumbName = breadcrumb | default: rootPage.first.title | capitalize %}
-			<li>
+			<li class="breadcrumb">
 				{%- if i == lastBreadcrumbIndex -%}
 				<span>{{ breadcrumbName }}</span>
 				{%- else -%}
@@ -16,5 +16,6 @@
 			</li>
 			{%- endfor -%}
 		</ul>
+		<span class="cursor">&#x258F;</span>
 	</nav>
 </header>

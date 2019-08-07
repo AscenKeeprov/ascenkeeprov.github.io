@@ -1,7 +1,22 @@
+@keyframes blink {
+	0% {
+		opacity: 0;
+	}
+
+	50% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
 $color-apparition: var(--color-apparition, ghostwhite);
 $color-greyn: var(--color-greyn, darkgray);
 $color-papyrus: var(--color-papyrus, lightgoldenrodyellow);
 $color-shadow: var(--color-shadow, rgba(0,0,0,0.2));
+$margin-directory-separator: 0 0.125em;
 $margin-punch-card-item: var(--letter-spacing-punch-card, 1rem);
 $padding-x-punch-card: var(--padding-x-punch-card, 1.5em);
 $padding-y-punch-card: var(--padding-y-punch-card, 1em);
@@ -58,10 +73,6 @@ section {
 	@extend %flex-center;
 	filter: drop-shadow(-0.25em 0.25em 0.5em $color-shadow);
 	height: 100%;
-}
-
-.directory-separator {
-	margin: 0.125em;
 }
 
 .page-content {
@@ -195,7 +206,53 @@ section {
 
 .site-footer {
 	bottom: 0;
-	padding-bottom: 0.25em;
-	padding-left: 0.5em;
-	position: fixed;
+
+	.text-light {
+		margin: $margin-directory-separator;
+	}
+}
+
+.site-footer,
+.site-header {
+	@extend %overlay;
+	background-color: inherit;
+}
+
+.site-header {
+	top: 0;
+}
+
+.site-navigation {
+	display: flex;
+
+	ul {
+		align-items: center;
+		display: inline-flex;
+		justify-content: flex-start;
+		list-style-position: inside;
+		list-style-type: none;
+	}
+
+	.breadcrumb {
+		&:not(:last-child)::after {
+			content: "/";
+			margin: $margin-directory-separator;
+		}
+	}
+
+	.breadcrumbs {
+		&::after {
+			content: ">";
+		}
+
+		&::before {
+			content: "S:/";
+		}
+	}
+
+	.cursor {
+		@extend %animation;
+		animation-name: blink;
+		margin: $margin-directory-separator;
+	}
 }
