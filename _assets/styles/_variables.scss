@@ -2,7 +2,7 @@
 	--animation-duration-default: 2s;
 	--animation-iteration-count-default: infinite;
 	--animation-timing-function-default: ease-in-out;
-	--color-apparition: rgba(245,250,255,0.5);
+	$color-blite: rgba(245,250,255,1) !global;
 	--color-grass: rgba(35,140,35,1);
 	--color-greyn: rgba(170,180,170,1);
 	--color-papyrus: rgba(240,245,220,1);
@@ -22,4 +22,6 @@
 	--transition-duration-default: 1s;
 	--transition-property-default: all;
 	--transition-timing-function-default: ease-in-out;
+	--max-height-mobile-tiny: 568px;
+	--max-width-mobile-tiny: 320px;
 }

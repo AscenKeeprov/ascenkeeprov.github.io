@@ -12,14 +12,16 @@
 	}
 }
 
-$color-apparition: var(--color-apparition, ghostwhite);
-$color-greyn: var(--color-greyn, darkgray);
-$color-papyrus: var(--color-papyrus, lightgoldenrodyellow);
-$color-shadow: var(--color-shadow, rgba(0,0,0,0.2));
+$background-color-body: scale-color($color-blite, $alpha: -50%);
+$background-color-content: var(--color-papyrus, lightgoldenrodyellow);
+$border-color-dark: var(--color-greyn, darkgray);
 $margin-directory-separator: 0 0.125em;
 $margin-punch-card-item: var(--letter-spacing-punch-card, 1rem);
+$max-height-mobile-tiny: var(--max-height-mobile-tiny, 568px);
+$max-width-mobile-tiny: var(--max-width-mobile-tiny, 320px);
 $padding-x-punch-card: var(--padding-x-punch-card, 1.5em);
 $padding-y-punch-card: var(--padding-y-punch-card, 1em);
+$shadow-color: var(--color-shadow, rgba(0,0,0,0.2));
 
 %punch-card-link-onhover {
 	&::before {
@@ -66,37 +68,72 @@ a {
 }
 
 body {
-	background-color: $color-apparition;
+	@extend %flex-center;
+	background-color: $background-color-body;
+	height: inherit;
+}
+
+html {
+	height: 100%;
 }
 
 section {
 	@extend %flex-center;
-	filter: drop-shadow(-0.25em 0.25em 0.5em $color-shadow);
-	height: 100%;
+	filter: drop-shadow(-0.25em 0.25em 0.5em $shadow-color);
+}
+
+.gallery {
+	@extend %flex-center;
+	flex-wrap: wrap;
+
+	.image-frame {
+		@extend %transition;
+		border-color: scale-color($color-pitch, $alpha: -40%);
+		border-style: ridge;
+		border-width: 1em;
+		margin: 1em;
+		position: relative;
+		transition-duration: 0.4s;
+		transition-property: scale();
+		width: $max-width-mobile-tiny;
+
+		&:hover {
+			transform: scale(1.1);
+		}
+
+		img {
+			display: block;
+			height: auto;
+			max-height: $max-height-mobile-tiny;
+			max-width: $max-width-mobile-tiny;
+			width: 100%;
+		}
+	}
 }
 
 .page-content {
-	height: 100vh;
+	max-height: 100vh;
+	padding: 2em 0;
 }
 
 .punch-card {
-	background-color: $color-papyrus;
+	background-color: $background-color-content;
 	border-radius: 0.75em;
 	clip-path: polygon(5% 0, 100% 0, 100% 100%, 0 100%, 0 10%);
 	display: flex;
 	flex-direction: column;
-	height: 360px;
+	max-width: 568px;
 	overflow: hidden;
 	padding-bottom: $padding-y-punch-card;
 	padding-left: $padding-x-punch-card;
 	padding-right: $padding-x-punch-card;
 	padding-top: calc(#{$padding-y-punch-card} * 4);
 	position: relative;
-	width: 740px;
+	width: 100%;
 
 	&::after {
 		@include layer(-1);
-		border-color: $color-greyn;
+		border-color: $border-color-dark;
 		border-style: solid;
 		border-width: 0 1px;
 		bottom: $padding-y-punch-card;
@@ -130,14 +167,14 @@ section {
 
 	a, address {
 		align-items: center;
-		box-shadow: -0.25em 0 $color-papyrus;
+		box-shadow: -0.25em 0 $background-color-content;
 		display: inline-flex;
 	}
 
 	.punch-hole {
 		@extend %transition;
-		background-color: $color-apparition;
-		box-shadow: inset -1px 1px $color-greyn;
+		background-color: $background-color-body;
+		box-shadow: inset -1px 1px $border-color-dark;
 		margin-right: $margin-punch-card-item;
 		transition-property: background, margin;
 	}
@@ -152,7 +189,7 @@ section {
 
 		&::after {
 			@extend %transition;
-			background-color: $color-papyrus;
+			background-color: $background-color-content;
 			bottom: 0;
 			content: "";
 			display: block;
@@ -180,11 +217,11 @@ section {
 
 		&:nth-child(2),
 		&:nth-child(6) {
-			border-top: 1px dashed $color-greyn;
+			border-top: 1px dashed $border-color-dark;
 		}
 
 		&:nth-last-child(1) {
-			border-top: 3px double $color-greyn;
+			border-top: 3px double $border-color-dark;
 		}
 
 		& > address:last-child > a > .punch-hole:last-child {
@@ -215,7 +252,7 @@ section {
 .site-footer,
 .site-header {
 	@extend %overlay;
-	background-color: inherit;
+	background-color: scale-color($color-blite, $alpha: -15%);
 }
 
 .site-header {

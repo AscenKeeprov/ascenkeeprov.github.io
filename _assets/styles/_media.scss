@@ -1,3 +1,15 @@
+@media (max-aspect-ratio: 2/3) and (max-width: 767px) {
+	.punch-card {
+		transform: rotate(90deg);
+	}
+}
+
+@media (min-width: 740px) {
+	.punch-card {
+		max-width: 740px;
+	}
+}
+
 html {
 	@each $min-width, $font-size in $page-font-sizes {
 		@media (min-width: #{$min-width}) {

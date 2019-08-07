@@ -4,12 +4,13 @@ layout: base
 permalink: /certificates/
 title: Certificates
 ---
+{%- assign certificates = site.collections | where: "label" , "certificates" | first -%}
 <section class="certificates">
-	{%- for collection in site.collections -%}
-	{%- if collection.label == "certificates" -%}
-	{%- for file in collection.files -%}
-	<img alt="{{ file.name | split: "." | first }}" src="{{ site.baseurl }}/certificates/{{ file.name }}" />
-	{%- endfor -%}
-	{%- endif -%}
-	{%- endfor -%}
+	<div class="gallery">
+		{%- for file in certificates.files -%}
+		<div class="image-frame">
+			<img alt="{{ file.name | split: "." | first }}" src="{{ site.baseurl }}/certificates/{{ file.name }}" />
+		</div>
+		{%- endfor -%}
+	</div>
 </section>
