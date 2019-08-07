@@ -60,6 +60,10 @@ section {
 	height: 100%;
 }
 
+.directory-separator {
+	margin: 0.125em;
+}
+
 .page-content {
 	height: 100vh;
 }
@@ -187,4 +191,11 @@ section {
 			}
 		}
 	}
+}
+
+.site-footer {
+	bottom: 0;
+	padding-bottom: 0.25em;
+	padding-left: 0.5em;
+	position: fixed;
 }

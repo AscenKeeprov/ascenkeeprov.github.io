@@ -15,7 +15,8 @@
 }
 
 $font-size-tiny: var(--font-size-tiny, 12px);
-$font-weight-bolder: var(--font-weight-bolder, 900);
+$font-weight-bold: var(--font-weight-bold, bold);
+$font-weight-bolder: var(--font-weight-bolder, bolder);
 $letter-spacing-punch-card: var(--letter-spacing-punch-card, 1rem);
 
 a {
@@ -28,8 +29,14 @@ a {
 }
 
 html {
+	color: var(--color-pitch, black);
 	font-family: sans-serif;
 	font-size: $font-size-tiny;
+}
+
+.directory-separator {
+	color: scale-color($color-pitch, $alpha: -75%);
+	font-weight: $font-weight-bolder;
 }
 
 .punch-card {
@@ -86,4 +93,9 @@ html {
 			letter-spacing: initial;
 		}
 	}
+}
+
+.site-footer {
+	font-family: Consolas;
+	user-select: none;
 }
