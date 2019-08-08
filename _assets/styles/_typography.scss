@@ -20,7 +20,7 @@ $color-text-secondary: var(--color-greyn, darkgray);
 $color-text-success: var(--color-grass, forestgreen);
 $color-text-warning: var(--color-mangold, yellow);
 $font-family-icon: Font-Awesome-Solid, Font-Awesome-Brands;
-$font-size-tiny: var(--font-size-tiny, 12px);
+$font-size-mobile: var(--font-size-tiny, 12px);
 $font-weight-bold: var(--font-weight-bold, bold);
 $font-weight-bolder: var(--font-weight-bolder, bolder);
 $letter-spacing-punch-card: var(--letter-spacing-punch-card, 1rem);
@@ -39,10 +39,16 @@ a {
 	}
 }
 
+@for $i from 1 through 6 {
+  h#{$i} {
+    font-size: 2.125em - $i * 0.125em;
+  }
+}
+
 html {
 	color: $color-text-primary;
 	font-family: sans-serif;
-	font-size: $font-size-tiny;
+	font-size: $font-size-mobile;
 }
 
 .error {

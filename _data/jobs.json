@@ -1,0 +1,39 @@
+[
+	{
+		"company": {
+			"name": "Actavis EAD Bulgaria",
+			"url": "http://www.sites.actavis.com/en/bg"
+		},
+		"date": {
+			"from": "Nov 2011",
+			"to": "Jul 2016"
+		},
+		"order": 3,
+		"position": "Business applications quality assurance specialist"
+	},
+	{
+		"company": {
+			"name": "UniCredit Bulbank AD",
+			"url": "https://www.unicreditbulbank.bg/en"
+		},
+		"date": {
+			"from": "Aug 2010",
+			"to": "Aug 2011"
+		},
+		"order": 2,
+		"position": "Trainee in department Card Business Management"
+	},
+	{
+		"company": {
+			"name": "CableTel JSC",
+			"note": "merged into A1's network under the brand \"blizoo\" in late 2015",
+			"url": "https://www.a1.bg/en"
+		},
+		"date": {
+			"from": "Oct 2008",
+			"to": "May 2009"
+		},
+		"order": 1,
+		"position": "Telecommunication services consultant"
+	}
+]

@@ -3,6 +3,7 @@ baseurl: ""
 collections:
   - certificates
 collections_dir: _collections
+data_dir: _data
 destination: docs
 
 exclude:

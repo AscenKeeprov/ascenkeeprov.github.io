@@ -1,0 +1,50 @@
+[
+	{
+		"id": "BPC420",
+		"date": "March 2015",
+		"order": 6,
+		"name": "Business Planning and Consolidation for SAP NetWeaver: Administration",
+		"type": "SAP course",
+		"url": "https://training.sap.com/course/bpc420"
+	},
+	{
+		"id": "BPC430",
+		"date": "January 2015",
+		"order": 5,
+		"name": "Business Planning and Consolidation: Reporting and Planning",
+		"type": "SAP course",
+		"url": "https://training.sap.com/course/bpc430"
+	},
+	{
+		"id": "BOE315",
+		"date": "May 2014",
+		"order": 4,
+		"name": "BusinessObjects Business Intelligence Platform: Administration and Security",
+		"type": "SAP course",
+		"url": "https://training.sap.com/course/boe315"
+	},
+	{
+		"id": "SAPTEE",
+		"date": "April 2014",
+		"order": 3,
+		"name": "NetWeaver Application Server - Fundamentals",
+		"type": "SAP course",
+		"url": "https://training.sap.com/course/saptee"
+	},
+	{
+		"id": "HA200E",
+		"date": "March 2014",
+		"order": 2,
+		"name": "HANA Installation and Operations",
+		"type": "SAP course",
+		"url": "https://training.sap.com/course/ha200e"
+	},
+	{
+		"id": "HA100E",
+		"date": "March 2014",
+		"order": 1,
+		"name": "HANA Introduction",
+		"type": "SAP course",
+		"url": "https://training.sap.com/course/ha100e"
+	}
+]

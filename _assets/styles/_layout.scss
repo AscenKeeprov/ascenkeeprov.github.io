@@ -80,6 +80,10 @@ html {
 section {
 	@extend %flex-center;
 	filter: drop-shadow(-0.25em 0.25em 0.5em $shadow-color);
+
+	&.biography {
+		display: grid;
+	}
 }
 
 .error {
@@ -115,9 +119,13 @@ section {
 	}
 }
 
-.icon-error::before {
-	content: "\f071";
+.icon {
 	margin-right: 1em;
+	max-height: 1em;
+
+	&-error::before {
+		content: "\f071";
+	}
 }
 
 .page-content {
@@ -276,7 +284,6 @@ section {
 		align-items: center;
 		display: inline-flex;
 		justify-content: flex-start;
-		list-style-position: inside;
 		list-style-type: none;
 	}
 

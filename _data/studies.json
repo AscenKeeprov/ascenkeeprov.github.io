@@ -1,0 +1,54 @@
+[
+	{
+		"category": "Vocational education",
+		"date": {
+			"from": 2016,
+			"to": "Present"
+		},
+		"degree": "Software Engineering - C# Web Developer",
+		"order": 4,
+		"institution": {
+			"name": "Software University of Sofia",
+			"url": "https://softuni.bg"
+		}
+	},
+	{
+		"category": "Tertiary education",
+		"date": {
+			"from": 2007,
+			"to": 2011
+		},
+		"degree": "Bachelor of Economics",
+		"order": 3,
+		"institution": {
+			"name": "\"St.Kliment Ohridski\" University of Sofia",
+			"url": "https://www.uni-sofia.bg/index.php/eng"
+		}
+	},
+	{
+		"category": "Secondary education",
+		"date": {
+			"from": 2002,
+			"to": 2007
+		},
+		"order": 2,
+		"institution": {
+			"location": "Sofia, Bulgaria",
+			"name": "Second English Language High School \"Thomas Jefferson\"",
+			"url": "https://2els.com"
+		}
+	},
+	{
+		"category": "Elementary education",
+		"date": {
+			"from": 1995,
+			"to": 2002
+		},
+		"order": 1,
+		"institution": {
+			"location": "Sofia, Bulgaria",
+			"name": "74th Primary School \"Gotse Delchev\"",
+			"url": "www.74su.org"
+		}
+	}
+]

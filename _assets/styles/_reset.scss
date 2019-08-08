@@ -14,6 +14,10 @@ html {
 	line-height: 1.5;
 }
 
+ol, ul {
+	list-style-position: inside;
+}
+
 table {
 	border-collapse: collapse;
 	border-spacing: 0;

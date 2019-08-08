@@ -1,0 +1,89 @@
+---
+indexed: true
+layout: base
+permalink: /biography/
+title: Biography
+---
+<section class="biography">
+	<div class="subsection">
+		<h2>Work Experience</h2>
+		<ol reversed="reversed">
+			{%- for job in site.data.jobs -%}
+			<li data-order="{{ job.order }}">
+				<time>{{ job.date.from }} &mdash; {{ job.date.to }}</time>
+				<span>{{ job.position }} at <a href="{{ job.company.url }}">{{ job.company.name }}</a>{%- if job.company.note -%}{{ " (" }}{{ job.company.note }}){%- endif -%}</span>
+			</li>
+			{%- endfor -%}
+		</ol>
+	</div>
+	<div class="subsection">
+		<h2>Education</h2>
+		<ol reversed="reversed">
+			{%- for study in site.data.studies -%}
+			<li data-order="{{ study.order }}">
+				<time>{{ study.date.from }} &mdash; {{ study.date.to }}</time>
+				<sub>{{ study.category }}</sub>
+				<span>{{ study.degree }}{%- if study.degree -%}{{ " at " }}{%- endif -%}<a href="{{ study.institution.url }}">{{ study.institution.name }}</a>{%- if study.institution.location -%}{{ ", " }}{%- endif -%}{{ study.institution.location }}</span>
+			</li>
+			{%- endfor -%}
+		</ol>
+	</div>
+	<div class="subsection">
+		<h2>Additional training and certification</h2>
+		<ol reversed="reversed">
+			{%- for course in site.data.courses -%}
+			<li data-order="{{ course.order }}">
+				<time>{{ course.date }}</time>
+				<span>{{ course.type }} <a href="{{ course.url }}">{{ course.id }}</a> &mdash; {{ course.name }}</span>
+			</li>
+			{%- endfor -%}
+		</ol>
+	</div>
+	<div class="subsection">
+		<h3>Competences</h3>
+		<div class="category">
+			<h6>Foreign language proficiencies</h6>
+			<p><img class="icon" src="{{ site.baseurl }}/images/flag-uk.svg">English &ndash; excellent command, both spoken and written (C1 level)</p>
+			<p><img class="icon" src="{{ site.baseurl }}/images/flag-es.svg">Spanish &ndash; good in writing, basic speaking ability (A1 level)</p>
+		</div>
+		<div class="category">
+			<h6>Social qualities</h6>
+			<p>Straightforwardness. Composure in strenuous situations. Ability to work well independently as well as in a team.</p>
+		</div>
+		<div class="category">
+			<h6>Organizational skills</h6>
+			<p>Efficient resource utilization. Strategic planning. From December 2009 to March 2010 I participated in a project for adapting and integrating the <a href="https://en.wikipedia.org/wiki/EFQM#EFQM_excellence_model">EFQM Excellence Model</a> in Bulgaria.</p>
+		</div>
+		<div class="category">
+			<h6>Technological experience</h6>
+			<details>
+				<summary>Professional use:</summary>
+				<p>IBM Cognos <abbr title="Business Intelligence">BI</abbr> Suite v.7.4.1-v.10.1.1 with emphasis on Analysis Studio, Contributor web client and Report Studio &ndash; functional and dataflow testing, security administration, end-user support</p>
+				<p>SAP BusinessObjects Planning & Consolidation (<abbr>BPC</abbr>) v10.0-v10.1 &ndash; security administration, integration between web interface and <abbr title="Microsoft">MS</abbr> Office components, new release functional testing, end-user support</p>
+				<p>SAP BusinessObjects BI Suite v.4.1SP5-v.4.2SP6 with primary focus on the Web Intelligence, Analysis for <abbr title="Online analytical processing">OLAP</abbr>, Analysis for <abbr title="Microsoft">MS</abbr> Office, Lumira, Dashboards and Crystal Reports modules</p>
+				<p>SAP Business Warehouse (BW) on NetWeaver 7.4 &ndash; security administration</p>
+				<p>SAP HANA RDBMS SPS7-SPS12 &ndash; dataflow testing, new release functional testing and security administration via the desktop Studio application and web-based Launchpad</p>
+				<p>Microsoft Office Suite &ndash; versions 2001 through 2016, mainly utilizing the Word, Excel, PowerPoint, Outlook, Access, SharePoint Designer and Visio components</p>
+			</details>
+			<details>
+				<summary>Personal projects:</summary>
+				<ul>
+					<li>Microsoft Visual Studio &ndash; Express 2005, Community 2015 and 2017 editions</li>
+					<li>Microsoft Visual Studio Code</li>
+					<li>Autodesk 3D Studio Max 6</li>
+					<li>Autodesk AutoCAD 2010</li>
+					<li>Adobe Photoshop CS2</li>
+					<li>Nero WaveEditor 12.5</li>
+					<li>MySQL on SQLyog</li>
+					<li>Audacity 2.3.2</li>
+					<li><abbr title="GNU Image Manipulation Program">GIMP</abbr></li>
+					<li>et cetera &hellip;</li>
+				</ul>
+			</details>
+		</div>
+	</div>
+	<div class="subsection">
+		<h5>Personal interests</h5>
+		<p>Audio and video editing, graffiti, digital photography, cycling, inline skating, singing</p>
+	</div>
+</section>
