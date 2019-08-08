@@ -1,6 +1,24 @@
-@media (max-aspect-ratio: 2/3) and (max-width: 767px) {
+@media (max-width: 568px) {
 	.punch-card {
-		transform: rotate(90deg);
+		max-width: 568px;
+	}
+}
+
+@media (max-width: 667px) {
+	.punch-card {
+		max-width: 667px;
+	}
+}
+
+@media (max-width: 736px) {
+	.punch-card {
+		max-width: 736px;
+	}
+}
+
+@media (min-height: 360px) {
+	.punch-card {
+		height: calc(360px - 2em);
 	}
 }
 

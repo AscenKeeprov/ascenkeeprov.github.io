@@ -18,7 +18,7 @@ $border-color-dark: var(--color-greyn, darkgray);
 $margin-directory-separator: 0 0.125em;
 $margin-punch-card-item: var(--letter-spacing-punch-card, 1rem);
 $max-height-mobile-tiny: var(--max-height-mobile-tiny, 568px);
-$max-width-mobile-tiny: var(--max-width-mobile-tiny, 320px);
+$max-width-mobile-tiny: calc(var(--max-width-mobile-tiny, 320px) - 2em);
 $padding-x-punch-card: var(--padding-x-punch-card, 1.5em);
 $padding-y-punch-card: var(--padding-y-punch-card, 1em);
 $shadow-color: var(--color-shadow, rgba(0,0,0,0.2));
@@ -82,6 +82,10 @@ section {
 	filter: drop-shadow(-0.25em 0.25em 0.5em $shadow-color);
 }
 
+.error {
+	padding: 1em 2em;
+}
+
 .gallery {
 	@extend %flex-center;
 	flex-wrap: wrap;
@@ -111,6 +115,11 @@ section {
 	}
 }
 
+.icon-error::before {
+	content: "\f071";
+	margin-right: 1em;
+}
+
 .page-content {
 	max-height: 100vh;
 	padding: 2em 0;
@@ -122,7 +131,8 @@ section {
 	clip-path: polygon(5% 0, 100% 0, 100% 100%, 0 100%, 0 10%);
 	display: flex;
 	flex-direction: column;
-	max-width: 568px;
+	height: $max-width-mobile-tiny;
+	max-width: $max-height-mobile-tiny;
 	overflow: hidden;
 	padding-bottom: $padding-y-punch-card;
 	padding-left: $padding-x-punch-card;

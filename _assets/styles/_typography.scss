@@ -14,6 +14,12 @@
 	src: url(../fonts/fa-solid-900.woff2) format("woff2"), url(../fonts/fa-solid-900.woff) format("woff"), url(../fonts/fa-solid-900.ttf) format("truetype");
 }
 
+$color-text-error: var(--color-lava, orangered);
+$color-text-primary: var(--color-pitch, black);
+$color-text-secondary: var(--color-greyn, darkgray);
+$color-text-success: var(--color-grass, forestgreen);
+$color-text-warning: var(--color-mangold, yellow);
+$font-family-icon: Font-Awesome-Solid, Font-Awesome-Brands;
 $font-size-tiny: var(--font-size-tiny, 12px);
 $font-weight-bold: var(--font-weight-bold, bold);
 $font-weight-bolder: var(--font-weight-bolder, bolder);
@@ -25,23 +31,45 @@ $letter-spacing-punch-card: var(--letter-spacing-punch-card, 1rem);
 }
 
 a {
-	color: var(--color-grass, forestgreen);
+	color: $color-text-success;
 	text-decoration: none;
 
 	&::before {
-		font-family: Font-Awesome-Solid, Font-Awesome-Brands;
+		font-family: $font-family-icon;
 	}
 }
 
 html {
-	color: var(--color-pitch, black);
+	color: $color-text-primary;
 	font-family: sans-serif;
 	font-size: $font-size-tiny;
 }
 
+.error {
+	border-color: $color-text-primary;
+	border-style: dashed;
+	border-width: 0.25em;
+	background-color: $color-text-warning;
+	font-size: 1.25em;
+	text-align: center;
+
+	&-message {
+		color: $color-text-error;
+		font-family: Lucida Console;
+	}
+}
+
+.icon {
+	font-family: $font-family-icon;
+
+	&-error::before {
+		font-size: 1.25em;
+	}
+}
+
 .punch-card {
 	@extend %CLI;
-	color: var(--color-greyn, darkgray);
+	color: $color-text-secondary;
 	font-variant-numeric: oldstyle-nums;
 	letter-spacing: $letter-spacing-punch-card;
 
