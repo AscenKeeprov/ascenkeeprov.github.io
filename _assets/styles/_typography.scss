@@ -52,10 +52,10 @@ html {
 }
 
 .error {
+	background-color: $color-text-warning;
 	border-color: $color-text-primary;
 	border-style: dashed;
 	border-width: 0.25em;
-	background-color: $color-text-warning;
 	font-size: 1.25em;
 	text-align: center;
 

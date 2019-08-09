@@ -18,6 +18,7 @@ $border-color-dark: var(--color-greyn, darkgray);
 $margin-directory-separator: 0 0.125em;
 $margin-punch-card-item: var(--letter-spacing-punch-card, 1rem);
 $max-height-mobile-tiny: var(--max-height-mobile-tiny, 568px);
+$max-width-fax-paper-strip: 2em;
 $max-width-mobile-tiny: var(--max-width-mobile-tiny, 320px);
 $padding-x-punch-card: var(--padding-x-punch-card, 1.5em);
 $padding-y-punch-card: var(--padding-y-punch-card, 1em);
@@ -69,6 +70,7 @@ a {
 
 body {
 	background-color: $background-color-body;
+	padding: 2em 0;
 }
 
 ol, ul {
@@ -88,8 +90,35 @@ section {
 	}
 
 	&.biography {
+		background-color: var(--color-fax-paper,ivory);
 		display: grid;
-		/*grid-template-columns: repeat(12, 1fr);*/
+		grid-template-columns: $max-width-fax-paper-strip auto $max-width-fax-paper-strip;
+
+		.fax-paper-content {
+			border-color: $border-color-dark;
+			border-style: dashed;
+			border-width: 0 0.125em;
+			padding: 1em;
+		}
+
+		.fax-paper-strip {
+			text-align: center;
+			width: $max-width-fax-paper-strip;
+			word-break: break-all;
+
+			&:first-of-type {
+				box-shadow: 0 0.0625em 0.375em $shadow-color;
+			}
+
+			&:last-of-type {
+				box-shadow: 0.0625em 0 0.375em $shadow-color;
+			}
+
+			&-hole {
+				font-size: 0.875em;
+				margin: 0 ($max-width-fax-paper-strip / 4);
+			}
+		}
 	}
 }
 
@@ -139,10 +168,6 @@ section {
 	&-error::before {
 		content: "\f071";
 	}
-}
-
-.page-content {
-	padding: 2em 0;
 }
 
 .punch-card {
