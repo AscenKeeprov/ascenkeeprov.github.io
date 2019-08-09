@@ -15,6 +15,8 @@
 $background-color-body: scale-color($color-blite, $alpha: -50%);
 $background-color-content: var(--color-papyrus, lightgoldenrodyellow);
 $border-color-dark: var(--color-greyn, darkgray);
+$fax-paper-content-class-name: 'fax-paper-content';
+$fax-paper-strip-class-name: 'fax-paper-strip';
 $margin-directory-separator: 0 0.125em;
 $margin-punch-card-item: var(--letter-spacing-punch-card, 1rem);
 $max-height-mobile-tiny: var(--max-height-mobile-tiny, 568px);
@@ -73,9 +75,14 @@ body {
 	padding: 2em 0;
 }
 
+details {
+	margin-bottom: 0.5em;
+}
+
 ol, ul {
 	display: flex;
 	flex-direction: column;
+	padding-left: 0.5em;
 
 	li[data-order] {
 		order: attr(data-order integer);
@@ -90,36 +97,60 @@ section {
 	}
 
 	&.biography {
-		background-color: var(--color-fax-paper,ivory);
+		align-items: stretch;
 		display: grid;
-		grid-template-columns: $max-width-fax-paper-strip auto $max-width-fax-paper-strip;
+		grid-template-areas: "#{$fax-paper-strip-class-name}-left #{$fax-paper-content-class-name} #{$fax-paper-strip-class-name}-right";
+		grid-template-columns: $max-width-fax-paper-strip calc(100% - #{$max-width-fax-paper-strip * 2}) $max-width-fax-paper-strip;
+		margin: auto;
+		overflow: hidden;
 
-		.fax-paper-content {
+		.#{$fax-paper-content-class-name} {
+			grid-area: #{$fax-paper-content-class-name};
 			border-color: $border-color-dark;
 			border-style: dashed;
 			border-width: 0 0.125em;
 			padding: 1em;
+			width: 100%;
 		}
 
-		.fax-paper-strip {
+		.#{$fax-paper-strip-class-name} {
+			display: flex;
+			flex-direction: column;
 			text-align: center;
 			width: $max-width-fax-paper-strip;
 			word-break: break-all;
 
 			&:first-of-type {
-				box-shadow: 0 0.0625em 0.375em $shadow-color;
+				grid-area: #{$fax-paper-strip-class-name}-left;
+				box-shadow: -0.0625em 0 0.375em $shadow-color;
+				margin-top: -0.6875em;
 			}
 
 			&:last-of-type {
+				grid-area: #{$fax-paper-strip-class-name}-right;
 				box-shadow: 0.0625em 0 0.375em $shadow-color;
+				margin-top: -0.5em;
 			}
 
 			&-hole {
+				border-radius: 50%;
 				font-size: 0.875em;
 				margin: 0 ($max-width-fax-paper-strip / 4);
 			}
 		}
+
+		> * {
+			background-color: var(--color-fax-paper,ivory);
+		}
 	}
+
+	.subsection:not(:last-child) {
+		margin-bottom: 2em;
+	}
+}
+
+.category {
+	margin-bottom: 1em;
 }
 
 .error {

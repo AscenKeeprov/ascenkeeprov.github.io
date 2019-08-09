@@ -1,44 +1,3 @@
-@media (max-width: 568px) {
-	.punch-card {
-		max-width: 568px;
-	}
-}
-
-@media (max-width: 667px) {
-	.punch-card {
-		max-width: 667px;
-	}
-}
-
-@media (max-width: 736px) {
-	.punch-card {
-		max-width: 736px;
-	}
-}
-
-@media (min-height: 360px) {
-	.punch-card {
-		height: calc(360px - 4em);
-	}
-}
-
-@media (min-height: 414px) {
-	.punch-card {
-		height: 360px;
-	}
-}
-
-@media (min-width: 740px) {
-	.punch-card {
-		max-width: 740px;
-	}
-}
-
-@media (min-width: 1920px) {
-	.biography {
-	}
-}
-
 html {
 	@each $min-width, $font-size in $page-font-sizes {
 		@media (min-width: #{$min-width}) {
@@ -47,19 +6,47 @@ html {
 	}
 }
 
-.punch-card-row {
-	&::after {
-		@each $min-width, $width in $punch-card-row-masks {
-			@media (min-width: #{$min-width}) {
-				width: #{$width};
-			}
+.biography {
+	@each $min-width, $width in $biography-widths {
+		@media (min-width: #{$min-width}) {
+			width: #{$width};
+		}
+	}
+}
+
+.punch-card {
+	@each $max-width in $punch-card-max-widths {
+		@media (max-width: #{$max-width}) {
+			max-width: #{$max-width};
 		}
 	}
 
-	& > &-filler + address {
-		@each $min-width, $padding-right in $punch-card-address-paddings {
-			@media (min-width: #{$min-width}) {
-				padding-right: #{$padding-right};
+	@media (min-height: 360px) {
+		height: calc(360px - 4em);
+	}
+
+	@media (min-height: 414px) {
+		height: 360px;
+	}
+
+	@media (min-width: 740px) {
+		max-width: 740px;
+	}
+
+	&-row {
+		&::after {
+			@each $min-width, $width in $punch-card-row-masks {
+				@media (min-width: #{$min-width}) {
+					width: #{$width};
+				}
+			}
+		}
+
+		& > &-filler + address {
+			@each $min-width, $padding-right in $punch-card-address-paddings {
+				@media (min-width: #{$min-width}) {
+					padding-right: #{$padding-right};
+				}
 			}
 		}
 	}
