@@ -51,6 +51,17 @@ html {
 	font-size: $font-size-mobile;
 }
 
+.biography {
+	.fax-paper-strip {
+		text-align: center;
+
+		&-hole {
+			color: $color-blite;
+			text-shadow: 1px 0 2px $color-text-secondary;
+		}
+	}
+}
+
 .error {
 	background-color: $color-text-warning;
 	border-color: $color-text-primary;

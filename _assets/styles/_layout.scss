@@ -104,43 +104,41 @@ section {
 		margin: auto;
 		overflow: hidden;
 
+		ol, ul {
+			list-style-type: none;
+		}
+
 		.#{$fax-paper-content-class-name} {
-			grid-area: #{$fax-paper-content-class-name};
+			background-color: var(--color-fax-paper,ivory);
 			border-color: $border-color-dark;
 			border-style: dashed;
 			border-width: 0 0.125em;
+			grid-area: #{$fax-paper-content-class-name};
 			padding: 1em;
 			width: 100%;
 		}
 
 		.#{$fax-paper-strip-class-name} {
-			display: flex;
-			flex-direction: column;
-			text-align: center;
+			background-color: var(--color-fax-paper,ivory);
+			display: grid;
+			grid-row-gap: 2em;
+			grid-template-columns: 1fr;
 			width: $max-width-fax-paper-strip;
 			word-break: break-all;
 
 			&:first-of-type {
 				grid-area: #{$fax-paper-strip-class-name}-left;
-				box-shadow: -0.0625em 0 0.375em $shadow-color;
 				margin-top: -0.6875em;
 			}
 
 			&:last-of-type {
 				grid-area: #{$fax-paper-strip-class-name}-right;
-				box-shadow: 0.0625em 0 0.375em $shadow-color;
 				margin-top: -0.5em;
 			}
 
 			&-hole {
-				border-radius: 50%;
-				font-size: 0.875em;
-				margin: 0 ($max-width-fax-paper-strip / 4);
+				height: 1em;
 			}
-		}
-
-		> * {
-			background-color: var(--color-fax-paper,ivory);
 		}
 	}
 

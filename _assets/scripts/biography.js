@@ -1,6 +1,6 @@
 const faxPaperStripClassName = 'fax-paper-strip';
 
-let faxPaperStripHolesCount = 38;
+let faxPaperStripHolesCount = 23;
 let faxPaperStrips = Array.from(document.getElementsByClassName(faxPaperStripClassName));
 
 function createFaxPaperStripHole() {
@@ -22,10 +22,10 @@ function populateFaxPaperStrips() {
 	if (faxPaperStrips.length) {
 		let content = Array.from(document.getElementsByClassName('fax-paper-content')[0].children);
 		let contentHeight = content.map(c => c.scrollHeight).reduce((c1, c2) => c1 + c2, 0);
-		let computedStyle = window.getComputedStyle(document.getElementsByTagName('html')[0]);
-		let fontSize = parseFloat(computedStyle.fontSize);
-		let lineHeightMultiplier = (parseFloat(computedStyle.lineHeight) / fontSize) * 0.74;
-		faxPaperStripHolesCount = Math.round(contentHeight / fontSize / lineHeightMultiplier);
+		let faxPaperStripHoleGap = parseFloat(window.getComputedStyle(faxPaperStrips[0]).rowGap);
+		let faxPaperStripHoleSize = parseFloat(window.getComputedStyle(faxPaperStrips[0]
+			.querySelector(`.${faxPaperStripClassName}-hole`)).height);
+		faxPaperStripHolesCount = Math.ceil(contentHeight / (faxPaperStripHoleSize + faxPaperStripHoleGap));
 		console.log(faxPaperStripHolesCount);
 		faxPaperStrips.forEach(fps => populateFaxPaperStrip(fps));
 	}
