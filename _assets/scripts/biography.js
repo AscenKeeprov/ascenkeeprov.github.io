@@ -26,7 +26,6 @@ function populateFaxPaperStrips() {
 		let faxPaperStripHoleSize = parseFloat(window.getComputedStyle(faxPaperStrips[0]
 			.querySelector(`.${faxPaperStripClassName}-hole`)).height);
 		faxPaperStripHolesCount = Math.ceil(contentHeight / (faxPaperStripHoleSize + faxPaperStripHoleGap));
-		console.log(faxPaperStripHolesCount);
 		faxPaperStrips.forEach(fps => populateFaxPaperStrip(fps));
 	}
 }

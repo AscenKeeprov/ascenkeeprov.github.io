@@ -70,6 +70,12 @@ a {
 	}
 }
 
+abbr {
+	border-color: $color-warning;
+	border-style: dotted;
+	border-width: 0 2px 0 0;
+}
+
 body {
 	background-color: $background-color-body;
 	padding: 2em 0;
@@ -77,6 +83,7 @@ body {
 
 details {
 	margin-bottom: 0.5em;
+	padding-left: 0.5em;
 }
 
 ol, ul {
@@ -103,6 +110,7 @@ section {
 		grid-template-columns: $max-width-fax-paper-strip calc(100% - #{$max-width-fax-paper-strip * 2}) $max-width-fax-paper-strip;
 		margin: auto;
 		overflow: hidden;
+		transform: rotateZ(-1deg);
 
 		ol, ul {
 			list-style-type: none;
@@ -113,9 +121,49 @@ section {
 			border-color: $border-color-dark;
 			border-style: dashed;
 			border-width: 0 0.125em;
+			display: grid;
 			grid-area: #{$fax-paper-content-class-name};
-			padding: 1em;
+			grid-template-columns: repeat(6, 1fr);
+			padding: 1em 0.25em 2em 0.125em;
 			width: 100%;
+
+			& > .subsection {
+				display: grid;
+				grid-column: 1 / -1;
+				grid-row: span 1;
+
+				& > .heading {
+					span {
+						padding-bottom: 0.25em;
+						position: relative;
+
+						&::after {
+							border-width: 1px 0 0 0;
+							bottom: 0;
+							content: "\0307";
+							top: 100%;
+						}
+
+						&::after,
+						&::before {
+							border-color: $border-color-dark;
+							border-style: solid;
+							display: block;
+							left: 0;
+							position: absolute;
+							right: 0;
+							top: 100%;
+						}
+
+						&::before {
+							border-width: 0 0 2px 0;
+							bottom: 10%;
+							content: "\0740";
+							top: 90%;
+						}
+					}
+				}
+			}
 		}
 
 		.#{$fax-paper-strip-class-name} {
@@ -144,6 +192,44 @@ section {
 
 	.subsection:not(:last-child) {
 		margin-bottom: 2em;
+	}
+}
+
+table {
+	* {
+		border-color: $border-color-dark;
+	}
+
+	tbody {
+		td {
+			padding: 0.125em 0.5em;
+
+			&:not(:last-child) {
+				@extend %table-column-separator;
+			}
+		}
+	}
+
+	thead {
+		border-style: double;
+		border-width: 0 0 0.25em 0;
+
+		th {
+			padding: 0 0.25em;
+
+			&:not(:last-child) {
+				@extend %table-column-separator;
+			}
+
+			&.heading {
+				background: none;
+			}
+		}
+
+		tr:not(:last-child) {
+			border-style: solid;
+			border-width: 0 0 0.125em 0;
+		}
 	}
 }
 
@@ -188,6 +274,11 @@ section {
 			width: 100%;
 		}
 	}
+}
+
+.heading {
+	background-color: scale-color($color-grellow, $alpha: -80%);
+	padding-left: 2em;
 }
 
 .icon {

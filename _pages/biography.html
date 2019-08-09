@@ -7,8 +7,8 @@ title: Biography
 <section class="biography">
 	{% include strip.html %}
 	<div class="fax-paper-content">
-		<div class="subsection">
-			<h2 class="heading">Work Experience</h2>
+		<div class="subsection subsection-work">
+			<h2 class="heading"><span>Work Experience</span></h2>
 			<ol reversed="reversed">
 				{%- for job in site.data.jobs -%}
 				<li data-order="{{ job.order }}">
@@ -18,8 +18,8 @@ title: Biography
 				{%- endfor -%}
 			</ol>
 		</div>
-		<div class="subsection">
-			<h2 class="heading">Education</h2>
+		<div class="subsection subsection-education">
+			<h2 class="heading"><span>Education</span></h2>
 			<ol reversed="reversed">
 				{%- for study in site.data.studies -%}
 				<li data-order="{{ study.order }}">
@@ -30,8 +30,8 @@ title: Biography
 				{%- endfor -%}
 			</ol>
 		</div>
-		<div class="subsection">
-			<h2 class="heading">Additional training and certification</h2>
+		<div class="subsection subsection-certification">
+			<h2 class="heading"><span>Additional training and certification</span></h2>
 			<ol reversed="reversed">
 				{%- for course in site.data.courses -%}
 				<li data-order="{{ course.order }}">
@@ -41,12 +41,42 @@ title: Biography
 				{%- endfor -%}
 			</ol>
 		</div>
-		<div class="subsection">
-			<h3 class="heading">Competences</h3>
+		<div class="subsection subsection-competences">
+			<h3 class="heading"><span>Competences</span></h3>
 			<div class="category">
-				<h6 class="heading">Foreign language proficiencies</h6>
-				<p><img class="icon" src="{{ site.baseurl }}/images/flag-uk.svg">English &ndash; excellent command, both spoken and written (C1 level)</p>
-				<p><img class="icon" src="{{ site.baseurl }}/images/flag-es.svg">Spanish &ndash; good in writing, basic speaking ability (A1 level)</p>
+				<table>
+					<thead>
+						<tr>
+							<th class="heading text-larger" colspan="4">Foreign language proficiencies</th>
+						</tr>
+						<tr>
+							<th>Language code (ISO 639-1)</th>
+							<th>Language name</th>
+							<th>Aptitude description</th>
+							<th>Proficiency level (<a href="https://en.wikipedia.org/wiki/Common_European_Framework_of_Reference_for_Languages"><abbr title="Common European Framework of Reference for Languages">CEFRL</abbr></a>)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>BG</td>
+							<td>Bulgarian</td>
+							<td>Native</td>
+							<td>C2</td>
+						</tr>
+						<tr>
+							<td>EN</td>
+							<td>English</td>
+							<td>Excellent command, both spoken and written</td>
+							<td>C1</td>
+						</tr>
+						<tr>
+							<td>ES</td>
+							<td>Spanish</td>
+							<td>Good writing, basic speaking ability</td>
+							<td>A1</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 			<div class="category">
 				<h6 class="heading">Social qualities</h6>
@@ -86,8 +116,8 @@ title: Biography
 				</details>
 			</div>
 		</div>
-		<div class="subsection">
-			<h5 class="heading">Personal interests</h5>
+		<div class="subsection subsection-interests">
+			<h5 class="heading"><span>Personal interests</span></h5>
 			<p>Audio and video editing, graffiti, digital photography, cycling, inline skating, singing</p>
 		</div>
 	</div>

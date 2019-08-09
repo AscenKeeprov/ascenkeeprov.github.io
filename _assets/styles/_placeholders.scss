@@ -12,7 +12,7 @@ $transition-timing-function-default: var(--transition-timing-function-default, e
 }
 
 %CLI {
-	font-family: Consolas;
+	font-family: PT-Mono, Consolas;
 	user-select: none;
 }
 
@@ -32,6 +32,12 @@ $transition-timing-function-default: var(--transition-timing-function-default, e
 	position: fixed;
 	width: 100%;
 	z-index: 5;
+}
+
+%table-column-separator {
+	border-style: dashed;
+	border-width: 0 0.0625em 0 0;
+	padding: 0.125em 0.5em;
 }
 
 %text-inherit {

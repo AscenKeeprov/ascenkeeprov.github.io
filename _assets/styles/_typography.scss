@@ -14,11 +14,22 @@
 	src: url(../fonts/fa-solid-900.woff2) format("woff2"), url(../fonts/fa-solid-900.woff) format("woff"), url(../fonts/fa-solid-900.ttf) format("truetype");
 }
 
-$color-text-error: var(--color-lava, orangered);
-$color-text-primary: var(--color-pitch, black);
-$color-text-secondary: var(--color-greyn, darkgray);
-$color-text-success: var(--color-grass, forestgreen);
-$color-text-warning: var(--color-mangold, yellow);
+@font-face {
+	font-display: auto;
+	font-family: PT-Mono;
+	font-style: normal;
+	font-weight: 400;
+	src: url(../fonts/pt-mono-400.ttf) format("truetype");
+}
+
+@font-face {
+	font-display: auto;
+	font-family: Ubuntu-Mono-Bold;
+	font-style: normal;
+	font-weight: 700;
+	src: url(../fonts/ub-mono-700.ttf) format("truetype");
+}
+
 $font-family-icon: Font-Awesome-Solid, Font-Awesome-Brands;
 $font-size-mobile: var(--font-size-tiny, 12px);
 $font-weight-bold: var(--font-weight-bold, bold);
@@ -31,11 +42,22 @@ $letter-spacing-punch-card: var(--letter-spacing-punch-card, 1rem);
 }
 
 a {
-	color: $color-text-success;
+	color: $color-success;
 	text-decoration: none;
 
 	&::before {
 		font-family: $font-family-icon;
+	}
+}
+
+details {
+	summary {
+		text-decoration-line: underline;
+		text-decoration-style: dotted;
+
+		&::marker {
+			color: scale-color($color-pitch, $lightness: 30%);
+		}
 	}
 }
 
@@ -46,34 +68,69 @@ a {
 }
 
 html {
-	color: $color-text-primary;
+	color: $color-primary;
 	font-family: sans-serif;
 	font-size: $font-size-mobile;
 }
 
+p {
+	text-indent: 1em;
+	padding-left: 0.5em;
+}
+
+table {
+	thead {
+		th {
+			text-align: center;
+		}
+	}
+}
+
 .biography {
+	font-family: PT-Mono, Courier New;
+
+	.fax-paper-content {
+		& > .subsection {
+			& > .heading {
+				span {
+					&::after,
+					&::before {
+						color: transparent;
+					}
+				}
+			}
+		}
+	}
+
 	.fax-paper-strip {
 		text-align: center;
 
 		&-hole {
 			color: $color-blite;
-			text-shadow: 1px 0 2px $color-text-secondary;
+			text-shadow: 1px 0 2px $color-secondary;
 		}
 	}
 }
 
 .error {
-	background-color: $color-text-warning;
-	border-color: $color-text-primary;
+	background-color: $color-warning;
+	border-color: $color-primary;
 	border-style: dashed;
 	border-width: 0.25em;
 	font-size: 1.25em;
 	text-align: center;
 
 	&-message {
-		color: $color-text-error;
+		color: $color-error;
 		font-family: Lucida Console;
 	}
+}
+
+.heading {
+	color: scale-color($color-pitch, $lightness: 30%);
+	font-family: Ubuntu-Mono-Bold, PT-Mono, monospace;
+	font-weight: $font-weight-bold;
+	letter-spacing: 0.0625em;
 }
 
 .icon {
@@ -86,7 +143,7 @@ html {
 
 .punch-card {
 	@extend %CLI;
-	color: $color-text-secondary;
+	color: $color-secondary;
 	font-variant-numeric: oldstyle-nums;
 	letter-spacing: $letter-spacing-punch-card;
 
