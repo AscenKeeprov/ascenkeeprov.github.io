@@ -6,7 +6,7 @@ title: Biography
 ---
 <section class="biography">
 	<div class="subsection">
-		<h2>Work Experience</h2>
+		<h2 class="heading">Work Experience</h2>
 		<ol reversed="reversed">
 			{%- for job in site.data.jobs -%}
 			<li data-order="{{ job.order }}">
@@ -17,7 +17,7 @@ title: Biography
 		</ol>
 	</div>
 	<div class="subsection">
-		<h2>Education</h2>
+		<h2 class="heading">Education</h2>
 		<ol reversed="reversed">
 			{%- for study in site.data.studies -%}
 			<li data-order="{{ study.order }}">
@@ -29,7 +29,7 @@ title: Biography
 		</ol>
 	</div>
 	<div class="subsection">
-		<h2>Additional training and certification</h2>
+		<h2 class="heading">Additional training and certification</h2>
 		<ol reversed="reversed">
 			{%- for course in site.data.courses -%}
 			<li data-order="{{ course.order }}">
@@ -40,22 +40,22 @@ title: Biography
 		</ol>
 	</div>
 	<div class="subsection">
-		<h3>Competences</h3>
+		<h3 class="heading">Competences</h3>
 		<div class="category">
-			<h6>Foreign language proficiencies</h6>
+			<h6 class="heading">Foreign language proficiencies</h6>
 			<p><img class="icon" src="{{ site.baseurl }}/images/flag-uk.svg">English &ndash; excellent command, both spoken and written (C1 level)</p>
 			<p><img class="icon" src="{{ site.baseurl }}/images/flag-es.svg">Spanish &ndash; good in writing, basic speaking ability (A1 level)</p>
 		</div>
 		<div class="category">
-			<h6>Social qualities</h6>
+			<h6 class="heading">Social qualities</h6>
 			<p>Straightforwardness. Composure in strenuous situations. Ability to work well independently as well as in a team.</p>
 		</div>
 		<div class="category">
-			<h6>Organizational skills</h6>
+			<h6 class="heading">Organizational skills</h6>
 			<p>Efficient resource utilization. Strategic planning. From December 2009 to March 2010 I participated in a project for adapting and integrating the <a href="https://en.wikipedia.org/wiki/EFQM#EFQM_excellence_model">EFQM Excellence Model</a> in Bulgaria.</p>
 		</div>
 		<div class="category">
-			<h6>Technological experience</h6>
+			<h6 class="heading">Technological experience</h6>
 			<details>
 				<summary>Professional use:</summary>
 				<p>IBM Cognos <abbr title="Business Intelligence">BI</abbr> Suite v.7.4.1-v.10.1.1 with emphasis on Analysis Studio, Contributor web client and Report Studio &ndash; functional and dataflow testing, security administration, end-user support</p>
@@ -83,7 +83,7 @@ title: Biography
 		</div>
 	</div>
 	<div class="subsection">
-		<h5>Personal interests</h5>
+		<h5 class="heading">Personal interests</h5>
 		<p>Audio and video editing, graffiti, digital photography, cycling, inline skating, singing</p>
 	</div>
 </section>

@@ -77,6 +77,15 @@ html {
 	height: 100%;
 }
 
+ol, ul {
+	display: flex;
+	flex-direction: column;
+
+	li[data-order] {
+		order: attr(data-order integer);
+	}
+}
+
 section {
 	@extend %flex-center;
 	filter: drop-shadow(-0.25em 0.25em 0.5em $shadow-color);

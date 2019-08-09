@@ -6,7 +6,7 @@
 			"to": "Present"
 		},
 		"degree": "Software Engineering - C# Web Developer",
-		"order": 4,
+		"order": -4,
 		"institution": {
 			"name": "Software University of Sofia",
 			"url": "https://softuni.bg"
@@ -19,7 +19,7 @@
 			"to": 2011
 		},
 		"degree": "Bachelor of Economics",
-		"order": 3,
+		"order": -3,
 		"institution": {
 			"name": "\"St.Kliment Ohridski\" University of Sofia",
 			"url": "https://www.uni-sofia.bg/index.php/eng"
@@ -31,7 +31,7 @@
 			"from": 2002,
 			"to": 2007
 		},
-		"order": 2,
+		"order": -2,
 		"institution": {
 			"location": "Sofia, Bulgaria",
 			"name": "Second English Language High School \"Thomas Jefferson\"",
@@ -44,7 +44,7 @@
 			"from": 1995,
 			"to": 2002
 		},
-		"order": 1,
+		"order": -1,
 		"institution": {
 			"location": "Sofia, Bulgaria",
 			"name": "74th Primary School \"Gotse Delchev\"",
