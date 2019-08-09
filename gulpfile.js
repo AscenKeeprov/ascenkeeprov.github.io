@@ -19,6 +19,7 @@ const processManager = require('child_process');
 const sassProcessor = require('gulp-sass');
 const sourceMapper = require('gulp-sourcemaps');
 const scriptsDirName = 'scripts';
+const streamMerger = require('merge-stream');
 const stylesDirName = 'styles';
 const supportedFontTypes = '{ttf,woff?(2)}';
 const supportedImageTypes = '{gif,ico,jp?(e)g,png,svg}';
@@ -94,9 +95,14 @@ function loadFonts() {
 }
 
 function loadImages() {
-	return gulp.src(`${config.assetsPath}/${imagesDirName}/**/*.${supportedImageTypes}`)
-		.pipe(imageMinifier())
-		.pipe(gulp.dest(`${config.outputPath}/${imagesDirName}`));
+	return streamMerger(
+		gulp.src(`${config.assetsPath}/${imagesDirName}/**/*.${supportedImageTypes}`)
+			.pipe(imageMinifier())
+			.pipe(gulp.dest(`${config.outputPath}/${imagesDirName}`)),
+		gulp.src(`${config.outputPath}/certificates/*.${supportedImageTypes}`)
+			.pipe(imageMinifier())
+			.pipe(gulp.dest(`${config.outputPath}/certificates`))
+	);
 }
 
 function loadScripts() {

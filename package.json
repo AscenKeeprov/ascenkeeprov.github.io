@@ -33,6 +33,7 @@
 		"gulp-sourcemaps": "^2.6.5",
 		"gulp-terser": "^1.2.0",
 		"js-yaml": "^3.13.1",
+		"merge-stream": "^2.0.0",
 		"node-sass": "^4.12.0"
 	},
 	"homepage": "https://ascenkeeprov.github.io",
