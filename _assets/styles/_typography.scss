@@ -40,9 +40,9 @@ a {
 }
 
 @for $i from 1 through 6 {
-  h#{$i} {
-    font-size: 2.125em - $i * 0.125em;
-  }
+	h#{$i} {
+		font-size: 2.125em - $i * 0.125em;
+	}
 }
 
 html {
@@ -130,6 +130,11 @@ html {
 
 .site-footer {
 	@extend %CLI;
+	font-size: smaller;
+
+	&::after {
+		@extend %directory-separator;
+	}
 
 	.text-lighter {
 		@extend %directory-separator;

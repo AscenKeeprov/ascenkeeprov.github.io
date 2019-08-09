@@ -16,6 +16,11 @@ $transition-timing-function-default: var(--transition-timing-function-default, e
 	user-select: none;
 }
 
+%endless-line {
+	overflow-x: auto;
+	white-space: nowrap;
+}
+
 %flex-center {
 	align-items: center;
 	display: flex;

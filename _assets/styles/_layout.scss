@@ -18,7 +18,7 @@ $border-color-dark: var(--color-greyn, darkgray);
 $margin-directory-separator: 0 0.125em;
 $margin-punch-card-item: var(--letter-spacing-punch-card, 1rem);
 $max-height-mobile-tiny: var(--max-height-mobile-tiny, 568px);
-$max-width-mobile-tiny: calc(var(--max-width-mobile-tiny, 320px) - 2em);
+$max-width-mobile-tiny: var(--max-width-mobile-tiny, 320px);
 $padding-x-punch-card: var(--padding-x-punch-card, 1.5em);
 $padding-y-punch-card: var(--padding-y-punch-card, 1em);
 $shadow-color: var(--color-shadow, rgba(0,0,0,0.2));
@@ -68,13 +68,7 @@ a {
 }
 
 body {
-	@extend %flex-center;
 	background-color: $background-color-body;
-	height: inherit;
-}
-
-html {
-	height: 100%;
 }
 
 ol, ul {
@@ -87,16 +81,26 @@ ol, ul {
 }
 
 section {
-	@extend %flex-center;
-	filter: drop-shadow(-0.25em 0.25em 0.5em $shadow-color);
+	&[class] {
+		@extend %flex-center;
+		filter: drop-shadow(-0.25em 0.25em 0.5em $shadow-color);
+		flex-wrap: wrap;
+	}
 
 	&.biography {
 		display: grid;
+		/*grid-template-columns: repeat(12, 1fr);*/
 	}
 }
 
 .error {
 	padding: 1em 2em;
+}
+
+.folder {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
 }
 
 .gallery {
@@ -138,7 +142,6 @@ section {
 }
 
 .page-content {
-	max-height: 100vh;
 	padding: 2em 0;
 }
 
@@ -148,7 +151,7 @@ section {
 	clip-path: polygon(5% 0, 100% 0, 100% 100%, 0 100%, 0 10%);
 	display: flex;
 	flex-direction: column;
-	height: $max-width-mobile-tiny;
+	height: calc(var(--max-width-mobile-tiny, 320px) - 4em);
 	max-width: $max-height-mobile-tiny;
 	overflow: hidden;
 	padding-bottom: $padding-y-punch-card;
@@ -269,7 +272,14 @@ section {
 }
 
 .site-footer {
+	@extend %endless-line;
+	align-items: baseline;
 	bottom: 0;
+	display: flex;
+
+	&::after {
+		content: ">";
+	}
 
 	.text-light {
 		margin: $margin-directory-separator;
@@ -292,6 +302,7 @@ section {
 	ul {
 		align-items: center;
 		display: inline-flex;
+		flex-direction: row;
 		justify-content: flex-start;
 		list-style-type: none;
 	}
@@ -304,6 +315,8 @@ section {
 	}
 
 	.breadcrumbs {
+		@extend %endless-line;
+
 		&::after {
 			content: ">";
 		}

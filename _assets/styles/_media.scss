@@ -18,13 +18,24 @@
 
 @media (min-height: 360px) {
 	.punch-card {
-		height: calc(360px - 2em);
+		height: calc(360px - 4em);
+	}
+}
+
+@media (min-height: 414px) {
+	.punch-card {
+		height: 360px;
 	}
 }
 
 @media (min-width: 740px) {
 	.punch-card {
 		max-width: 740px;
+	}
+}
+
+@media (min-width: 1920px) {
+	.biography {
 	}
 }
 
