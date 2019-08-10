@@ -1,0 +1,20 @@
+[
+	{
+		"code": "BG",
+		"name": "Bulgarian",
+		"ability": "Perfect - native language",
+		"proficiency": "C2"
+	},
+	{
+		"code": "EN",
+		"name": "English",
+		"ability": "Excellent command, both spoken and written",
+		"proficiency": "C1"
+	},
+	{
+		"code": "ES",
+		"name": "Spanish",
+		"ability": "Good writing, basic speaking ability",
+		"proficiency": "A1"
+	}
+]

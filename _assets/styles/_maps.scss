@@ -16,8 +16,8 @@ $biography-widths: ($breakpoint-XGA: 95%, 1110px: 90%, 1170px: 85%, $breakpoint-
 
 $page-font-sizes: ( $breakpoint-HD: $font-size-small, $breakpoint-FHD: $font-size-medium, $breakpoint-UW-FHD: $font-size-large, $breakpoint-4K: $font-size-huge );
 
-$punch-card-address-paddings: ( 660px: 1.75em, 690px: 1.375em, 720px: 1.25em, 760px: 0.375em, 790px: 1.125em, 820px: 1.625em, 850px: 0.875em, 950px: 1.625em, 1010px: 0.25em, 1040px: 1.375em, 1110px: 1.625em, 1170px: 1.125em, $breakpoint-HD: 1.375em, 1470px: 0.375em, $breakpoint-HDPlus: 0.75em, 1760px: 1.125em, $breakpoint-FHD: 1.0625em, 2140px: 1.1875em, 2400px: 1.5em, 2750px: 0.75em, $breakpoint-4K: 1em, );
+$punch-card-address-paddings: ( 630px: 0.625em, 660px: 1.9375em, 690px: 1.375em, 720px: 1.25em, 740px: 1.625em, 760px: 1.75em, 790px: 1.125em, 800px: 1.625em, 810px: 1.75em, 820px: 1.625em, 850px: 0.875em, 950px: 1.625em, 1010px: 0.25em, $breakpoint-XGA: 1.75em, 1040px: 1.375em, 1110px: 1.625em, 1170px: 1.125em, $breakpoint-WXGA: 1.75em, $breakpoint-HD: 1.375em, 1470px: 0.375em, $breakpoint-HDPlus: 0.75em, 1760px: 1.125em, $breakpoint-FHD: 1.0625em, 2140px: 1.1875em, 2400px: 1.5em, 2750px: 0.75em, $breakpoint-4K: 1em, );
 
 $punch-card-max-widths: 568px, 667px, 736px;
 
-$punch-card-row-masks: ( 630px: 0.5em, 660px: 0.75em, 720px: 0.5em, 760px: 0.25em, 820px: 0.625em, 950px: 0.875em, 1010px: 0.125em, 1040px: 0.25em, 1110px: 0.625em, $breakpoint-HD: 0.375em, 1470px: 0.25em, $breakpoint-HDPlus: 0.5em, );
+$punch-card-row-masks: ( 360px: 0.625em, 630px: 0.5em, 660px: 0.75em, 720px: 0.5em, 740px: 0.625em, 760px: 0.5em, 810px: 0.75em, 820px: 0.625em, 950px: 0.875em, 1010px: 0.125em, $breakpoint-XGA: 0.75em, 1040px: 0.25em, 1110px: 0.625em, $breakpoint-WXGA: 0.625em, $breakpoint-HD: 0.375em, 1470px: 0.25em, $breakpoint-HDPlus: 0.5em, );

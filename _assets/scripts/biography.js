@@ -30,10 +30,6 @@ function populateFaxPaperStrips() {
 	}
 }
 
-Array.from(document.querySelectorAll('li[data-order]')).forEach(listItem => {
-	listItem.style.order = listItem.dataset.order;
-});
-
 Array.from(document.getElementsByTagName('details')).forEach(d => {
 	d.addEventListener('toggle', populateFaxPaperStrips);
 });

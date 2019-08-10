@@ -27,6 +27,11 @@ $transition-timing-function-default: var(--transition-timing-function-default, e
 	justify-content: center;
 }
 
+%grid-heading {
+	grid-column: 1 / -1;
+	grid-row: 1 / 2;
+}
+
 %overlay {
 	padding: 0.25em 0.5em;
 	position: fixed;

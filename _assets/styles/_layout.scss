@@ -1,17 +1,3 @@
-@keyframes blink {
-	0% {
-		opacity: 0;
-	}
-
-	50% {
-		opacity: 1;
-	}
-
-	100% {
-		opacity: 0;
-	}
-}
-
 $background-color-body: scale-color($color-blite, $alpha: -50%);
 $background-color-content: var(--color-papyrus, lightgoldenrodyellow);
 $border-color-dark: var(--color-greyn, darkgray);
@@ -71,9 +57,15 @@ a {
 }
 
 abbr {
-	border-color: $color-warning;
-	border-style: dotted;
-	border-width: 0 2px 0 0;
+	padding-right: .25em;
+	position: relative;
+
+	&::after {
+		content: "?";
+		position: absolute;
+		right: -0.1875em;
+		top: -0.125em;
+	}
 }
 
 body {
@@ -87,12 +79,16 @@ details {
 }
 
 ol, ul {
-	display: flex;
-	flex-direction: column;
 	padding-left: 0.5em;
 
-	li[data-order] {
-		order: attr(data-order integer);
+	li {
+		&:not(:last-child) {
+			margin-bottom: 0.5em;
+		}
+
+		&[data-order] {
+			order: attr(data-order integer);
+		}
 	}
 }
 
@@ -105,6 +101,10 @@ section {
 
 	&.biography {
 		align-items: stretch;
+		animation-duration: 1.5s;
+		animation-iteration-count: 1;
+		animation-name: toss;
+		animation-timing-function: cubic-bezier(0.2, 1, 0.375, 1);
 		display: grid;
 		grid-template-areas: "#{$fax-paper-strip-class-name}-left #{$fax-paper-content-class-name} #{$fax-paper-strip-class-name}-right";
 		grid-template-columns: $max-width-fax-paper-strip calc(100% - #{$max-width-fax-paper-strip * 2}) $max-width-fax-paper-strip;
@@ -116,6 +116,74 @@ section {
 			list-style-type: none;
 		}
 
+		ol {
+			justify-content: space-between;
+
+			li {
+				align-items: center;
+				display: grid;
+				grid-column-gap: 0.5em;
+				grid-row: 1/ -1;
+				grid-template-columns: 12em 1em 1fr;
+				grid-template-rows: minmax(min-content, 1.5em) minmax(min-content,0.75em);
+
+				&::after {
+					align-self: center;
+					content: ">";
+					display: block;
+					grid-column: 2;
+					grid-row: 1 / -1;
+					margin-left: 0.25em;
+				}
+
+				span {
+					align-self: center;
+					grid-column: 3;
+					grid-row: span 2;
+				}
+
+				sub {
+					align-self: first baseline;
+					grid-row: 2 / 3;
+				}
+
+				sub, time {
+					grid-column: 1;
+					justify-self: end;
+				}
+
+				time {
+					align-self: last baseline;
+					grid-row: 1 / 2;
+				}
+			}
+		}
+
+		table {
+			tbody {
+				tr:hover {
+					background-color: scale-color($color-greyn, $alpha: -85%);
+				}
+			}
+		}
+
+		ul {
+			li {
+				border-color: $border-color-dark;
+				border-style: dotted;
+				border-width: 0 0 0 2px;
+				padding-left: 0.5em;
+				position: relative;
+
+				&::before {
+					bottom: -0.25em;
+					content: "\1CDF";
+					margin-left: -0.25em;
+					position: absolute;
+				}
+			}
+		}
+
 		.#{$fax-paper-content-class-name} {
 			background-color: var(--color-fax-paper,ivory);
 			border-color: $border-color-dark;
@@ -123,16 +191,30 @@ section {
 			border-width: 0 0.125em;
 			display: grid;
 			grid-area: #{$fax-paper-content-class-name};
-			grid-template-columns: repeat(6, 1fr);
+			grid-template-columns: 1fr;
+			grid-template-rows: auto;
 			padding: 1em 0.25em 2em 0.125em;
-			width: 100%;
 
 			& > .subsection {
 				display: grid;
 				grid-column: 1 / -1;
 				grid-row: span 1;
+				grid-template-columns: auto;
+				grid-template-rows: minmax(1.5em, 3em) 1fr;
+
+				& > .category {
+					display: grid;
+					grid-template-columns: auto;
+					grid-template-rows: auto;
+
+					& > .heading {
+						@extend %grid-heading;
+					}
+				}
 
 				& > .heading {
+					@extend %grid-heading;
+
 					span {
 						padding-bottom: 0.25em;
 						position: relative;
@@ -188,6 +270,14 @@ section {
 				height: 1em;
 			}
 		}
+
+		.heading {
+			background-color: scale-color($color-grellow, $alpha: -85%);
+		}
+	}
+
+	&.contacts {
+		height: calc(100vh - 4em);
 	}
 
 	.subsection:not(:last-child) {
@@ -277,7 +367,6 @@ table {
 }
 
 .heading {
-	background-color: scale-color($color-grellow, $alpha: -80%);
 	padding-left: 2em;
 }
 
@@ -418,7 +507,7 @@ table {
 
 .site-footer {
 	@extend %endless-line;
-	align-items: baseline;
+	align-items: flex-end;
 	bottom: 0;
 	display: flex;
 
@@ -461,6 +550,7 @@ table {
 
 	.breadcrumbs {
 		@extend %endless-line;
+		align-items: baseline;
 
 		&::after {
 			content: ">";

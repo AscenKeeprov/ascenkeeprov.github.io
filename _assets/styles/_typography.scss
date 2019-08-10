@@ -50,6 +50,17 @@ a {
 	}
 }
 
+abbr {
+	text-decoration-color: $color-info;
+	text-decoration-line: underline;
+	text-decoration-style: dotted;
+
+	&::after {
+		color: $color-info;
+		font-size: 0.625em;
+	}
+}
+
 details {
 	summary {
 		text-decoration-line: underline;
@@ -88,6 +99,35 @@ table {
 
 .biography {
 	font-family: PT-Mono, Courier New;
+
+	ol {
+		li {
+			&::after {
+				color: scale-color($color-pitch, $lightness: 60%);
+				font-weight: $font-weight-bolder;
+			}
+
+			span {
+				text-align: left;
+			}
+
+			sub {
+				text-align: right;
+			}
+
+			time {
+				text-align: right;
+			}
+		}
+	}
+
+	ul {
+		li {
+			&::before {
+				color: $border-color-dark;
+			}
+		}
+	}
 
 	.fax-paper-content {
 		& > .subsection {
@@ -142,8 +182,8 @@ table {
 }
 
 .punch-card {
-	@extend %CLI;
 	color: $color-secondary;
+	font-family: Consolas;
 	font-variant-numeric: oldstyle-nums;
 	letter-spacing: $letter-spacing-punch-card;
 
