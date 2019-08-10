@@ -1,36 +1,6 @@
-@font-face {
-	font-display: auto;
-	font-family: Font-Awesome-Brands;
-	font-style: normal;
-	font-weight: 400;
-	src: url(../fonts/fa-brands-400.woff2) format("woff2"), url(../fonts/fa-brands-400.woff) format("woff"), url(../fonts/fa-brands-400.ttf) format("truetype");
-}
-
-@font-face {
-	font-display: auto;
-	font-family: Font-Awesome-Solid;
-	font-style: normal;
-	font-weight: 900;
-	src: url(../fonts/fa-solid-900.woff2) format("woff2"), url(../fonts/fa-solid-900.woff) format("woff"), url(../fonts/fa-solid-900.ttf) format("truetype");
-}
-
-@font-face {
-	font-display: auto;
-	font-family: PT-Mono;
-	font-style: normal;
-	font-weight: 400;
-	src: url(../fonts/pt-mono-400.ttf) format("truetype");
-}
-
-@font-face {
-	font-display: auto;
-	font-family: Ubuntu-Mono-Bold;
-	font-style: normal;
-	font-weight: 700;
-	src: url(../fonts/ub-mono-700.ttf) format("truetype");
-}
-
-$font-family-icon: Font-Awesome-Solid, Font-Awesome-Brands;
+$font-family-default: Alegreya-Sans, Alegreya-Sans-Medium, Alegreya-Sans-Light, Alegreya-Sans-Bold, Alegreya-Sans-Bolder, Alegreya-Sans-Italic, Alegreya-Sans-Medium-Italic, Alegreya-Sans-Light-Italic;
+$font-family-icon: Font-Awesome, Font-Awesome-Brands, Font-Awesome-Solid;
+$font-family-technical: Ubuntu-Mono, Ubuntu-Mono-Bold, Ubuntu-Mono-Italic;
 $font-size-mobile: var(--font-size-tiny, 12px);
 $font-weight-bold: var(--font-weight-bold, bold);
 $font-weight-bolder: var(--font-weight-bolder, bolder);
@@ -80,8 +50,9 @@ details {
 
 html {
 	color: $color-primary;
-	font-family: sans-serif;
+	font-family: $font-family-default, sans-serif;
 	font-size: $font-size-mobile;
+	font-weight: normal;
 }
 
 p {
@@ -150,6 +121,11 @@ table {
 			text-shadow: 1px 0 2px $color-secondary;
 		}
 	}
+
+	.heading {
+		color: scale-color($color-pitch, $lightness: 30%);
+		font-family: $font-family-technical, PT-Mono, monospace;
+	}
 }
 
 .error {
@@ -167,8 +143,6 @@ table {
 }
 
 .heading {
-	color: scale-color($color-pitch, $lightness: 30%);
-	font-family: Ubuntu-Mono-Bold, PT-Mono, monospace;
 	font-weight: $font-weight-bold;
 	letter-spacing: 0.0625em;
 }
@@ -178,6 +152,14 @@ table {
 
 	&-error::before {
 		font-size: 1.25em;
+	}
+}
+
+.index {
+	.pages {
+		.page {
+			text-align: right;
+		}
 	}
 }
 

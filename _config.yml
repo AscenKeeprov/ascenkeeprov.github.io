@@ -33,7 +33,7 @@ github:
     url: https://api.github.com/licenses/mit
   pages_env: production
   pages_hostname: github.io
-  project_tagline: "Asen Kiprov's personal GitHub page."
+  project_tagline: "Asen Kiprov's personal site"
   show_downloads: false
 
 include: ["_pages"]
@@ -50,5 +50,5 @@ port: 8080
 repository: AscenKeeprov/ascenkeeprov.github.io
 theme: null
 timezone: Etc/UTC
-title: "Asen Kiprov"
+title: "Asen Kiprov's personal site"
 url: https://ascenkeeprov.github.io

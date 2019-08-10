@@ -5,8 +5,16 @@ root: true
 title: Index
 ---
 <section class="index">
-	{% assign indexedPages = site.pages | where: "indexed" , "true" %}
-	{%- for page in indexedPages  -%}
-	{% include folder.html %}
-	{%- endfor -%}
+	<div class="greeting">
+		<h1 class="heading">Welcome!</h1>
+		<p>My name is Asen Kiprov and this is my personal site.</p>
+		<p>Have a look at the pages linked below to learn more about me.</p>
+		<p>Thank you for stopping by!</p>
+	</div>
+	<div class="pages">
+		{% assign indexedPages = site.pages | where: "indexed" , "true" %}
+		{%- for page in indexedPages  -%}
+		{% include page.html %}
+		{%- endfor -%}
+	</div>
 </section>

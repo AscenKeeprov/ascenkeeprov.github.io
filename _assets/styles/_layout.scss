@@ -1,5 +1,6 @@
 $background-color-body: scale-color($color-blite, $alpha: -50%);
-$background-color-content: var(--color-papyrus, lightgoldenrodyellow);
+$background-color-punch-card: var(--color-papyrus, lightgoldenrodyellow);
+$background-color-page-content: scale-color($color-blite, $alpha: -25%);
 $border-color-dark: var(--color-greyn, darkgray);
 $fax-paper-content-class-name: 'fax-paper-content';
 $fax-paper-strip-class-name: 'fax-paper-strip';
@@ -30,7 +31,7 @@ a {
 	}
 
 	@include link-icon("^", "mailto:") {
-		content: "\f199";
+		content: "\f0e0";
 	}
 
 	@include link-icon("^", "tel:") {
@@ -95,7 +96,6 @@ ol, ul {
 section {
 	&[class] {
 		@extend %flex-center;
-		filter: drop-shadow(-0.25em 0.25em 0.5em $shadow-color);
 		flex-wrap: wrap;
 	}
 
@@ -106,6 +106,7 @@ section {
 		animation-name: toss;
 		animation-timing-function: cubic-bezier(0.2, 1, 0.375, 1);
 		display: grid;
+		filter: drop-shadow(-0.25em 0.25em 0.5em $shadow-color);
 		grid-template-areas: "#{$fax-paper-strip-class-name}-left #{$fax-paper-content-class-name} #{$fax-paper-strip-class-name}-right";
 		grid-template-columns: $max-width-fax-paper-strip calc(100% - #{$max-width-fax-paper-strip * 2}) $max-width-fax-paper-strip;
 		margin: auto;
@@ -123,7 +124,7 @@ section {
 				align-items: center;
 				display: grid;
 				grid-column-gap: 0.5em;
-				grid-row: 1/ -1;
+				grid-row: 1 / -1;
 				grid-template-columns: 12em 1em 1fr;
 				grid-template-rows: minmax(min-content, 1.5em) minmax(min-content,0.75em);
 
@@ -280,6 +281,22 @@ section {
 		height: calc(100vh - 4em);
 	}
 
+	&.index {
+		display: block;
+		margin: auto;
+		//DELETE AFTER SETTING MEDIA QUERIES
+		max-width: 768px;
+
+		.pages {
+			@extend %flex-center;
+			flex-wrap: wrap;
+
+			.page {
+				max-width: 256px;
+			}
+		}
+	}
+
 	.subsection:not(:last-child) {
 		margin-bottom: 2em;
 	}
@@ -379,8 +396,38 @@ table {
 	}
 }
 
+.page-content {
+	position: relative;
+
+	&::after {
+		background-color: $background-color-page-content;
+		z-index: -1;
+	}
+
+	&::after, &::before {
+		content: "";
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+	}
+
+	&::before {
+		background-image: url(./../images/code.png);
+		background-position: left top;
+		background-repeat: repeat-y;
+		filter: blur(2px);
+		z-index: -2;
+	}
+}
+
+.page-tile {
+	filter: drop-shadow(-0.25em 0.25em 0.5em $shadow-color);
+}
+
 .punch-card {
-	background-color: $background-color-content;
+	background-color: $background-color-punch-card;
 	border-radius: 0.75em;
 	clip-path: polygon(5% 0, 100% 0, 100% 100%, 0 100%, 0 10%);
 	display: flex;
@@ -431,7 +478,7 @@ table {
 
 	a, address {
 		align-items: center;
-		box-shadow: -0.25em 0 $background-color-content;
+		box-shadow: -0.25em 0 $background-color-punch-card;
 		display: inline-flex;
 	}
 
@@ -453,7 +500,7 @@ table {
 
 		&::after {
 			@extend %transition;
-			background-color: $background-color-content;
+			background-color: $background-color-punch-card;
 			bottom: 0;
 			content: "";
 			display: block;
