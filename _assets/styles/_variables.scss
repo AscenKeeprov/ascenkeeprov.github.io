@@ -12,10 +12,12 @@
 	$color-info: rgba(0,180,180,1) !global;
 	--color-lava: rgba(255,55,25,1);
 	--color-mangold: rgba(255,245,45,1);
+	$color-old-plastic: rgba(255,235,195,1) !global;
 	--color-papyrus: rgba(240,245,220,1);
 	$color-pitch: rgba(20,25,25,1) !global;
 	--color-pitch: rgba(20,25,25,1);
 	$color-primary: var(--color-pitch, black) !global;
+	--color-raspberred: rgba(235,95,110,1);
 	$color-secondary: var(--color-greyn, darkgray) !global;
 	--color-shadow: rgba(0,0,0,0.2);
 	--font-size-huge: 20px;

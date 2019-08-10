@@ -39,6 +39,12 @@ $transition-timing-function-default: var(--transition-timing-function-default, e
 	z-index: 5;
 }
 
+%pseudo {
+	content: "";
+	display: block;
+	position: absolute;
+}
+
 %table-column-separator {
 	border-style: dashed;
 	border-width: 0 0.0625em 0 0;

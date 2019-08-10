@@ -128,6 +128,11 @@ table {
 	}
 }
 
+.button-keyboard {
+	color: var(--color-raspberred, lightcoral);
+	font-family: Consolas;
+}
+
 .error {
 	background-color: $color-warning;
 	border-color: $color-primary;

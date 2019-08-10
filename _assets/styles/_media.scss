@@ -12,6 +12,10 @@ html {
 			width: #{$width};
 		}
 	}
+
+	@media (min-width: 1360px) {
+		transform: rotateZ(-1deg);
+	}
 }
 
 .punch-card {
