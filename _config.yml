@@ -1,5 +1,5 @@
 assets_dir: _assets
-baseurl: ""
+baseurl: "/docs"
 collections:
   - certificates
 collections_dir: _collections
