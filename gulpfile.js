@@ -5,6 +5,7 @@ const cssMinifier = require('cssnano');
 const cssPrefixer = require('autoprefixer');
 const cssProcessor = require('gulp-postcss');
 const fileCombiner = require('gulp-concat');
+const fileDeleter = require('del');
 const fileManager = require('fs');
 const fontsDirName = 'fonts';
 const gulp = require('gulp');
@@ -32,8 +33,13 @@ let config = getJekyllConfig('./_config.yml');
 
 sassProcessor.compiler = require('node-sass');
 
-function deployGithubPage() {
+function deployGithubPage(done) {
+	fileDeleter.sync(['./**/*', '!.git', '!.vs', `!${config.outputPath}`, '!node_modules', `!${config.inputPath}`,
+		'!.gitattributes', '!.gitignore', '!_config.yml', '!Gemfile', '!Gemfile.lock', '!gulpfile.js',
+		'!LICENSE', '!package.json', '!package-lock.json', '!README.md']);
+	gulp.src(`${config.outputPath}/**/*`).pipe(gulp.dest('./'));
 	ioManager.question('Commit message: ', (message) => {
+		if (message.toUpperCase() == 'CANCEL') return;
 		let deployScript = [
 			'git add .',
 			`git commit --all --message "${message}" --cleanup=strip`,
@@ -50,18 +56,20 @@ function deployGithubPage() {
 			return;
 		});
 	});
+	done();
 }
 
 function getJekyllConfig(configFilePath) {
 	try {
 		let configObj = {};
 		let jekyllConfig = yamlParser.safeLoad(fileManager.readFileSync(configFilePath, { encoding: 'utf8' }));
-		configObj.assetsPath = `./${jekyllConfig.assets_dir}`;
-		configObj.collectionsPath = `./${jekyllConfig.collections_dir}`;
-		configObj.layoutsPath = `./${jekyllConfig.layouts_dir}`;
+		configObj.assetsPath = `${jekyllConfig.source}/${jekyllConfig.assets_dir}`;
+		configObj.collectionsPath = `${jekyllConfig.source}/${jekyllConfig.collections_dir}`;
+		configObj.layoutsPath = `${jekyllConfig.source}/${jekyllConfig.layouts_dir}`;
 		configObj.outputPath = `./${jekyllConfig.destination}`;
-		configObj.pagesPath = `./${jekyllConfig.pages_dir}`;
-		configObj.partialsPath = `./${jekyllConfig.includes_dir}`;
+		configObj.pagesPath = `${jekyllConfig.source}/${jekyllConfig.pages_dir}`;
+		configObj.partialsPath = `${jekyllConfig.source}/${jekyllConfig.includes_dir}`;
+		configObj.inputPath = `${jekyllConfig.source}`;
 		configObj.deployUrl = `git@github.com:${jekyllConfig.repository}`;
 		return configObj;
 	} catch (e) {
@@ -90,7 +98,7 @@ function loadAssets() {
 }
 
 function loadFonts() {
-	return gulp.src(`${config.assetsPath}/${fontsDirName}/**/*.${supportedFontTypes}`)
+	return gulp.src(`${config.assetsPath}/${fontsDirName}/**.${supportedFontTypes}`)
 		.pipe(gulp.dest(`${config.outputPath}/${fontsDirName}`));
 }
 

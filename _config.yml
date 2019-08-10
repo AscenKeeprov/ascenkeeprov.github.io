@@ -1,10 +1,10 @@
 assets_dir: _assets
-baseurl: "/docs"
+baseurl: ""
 collections:
   - certificates
 collections_dir: _collections
 data_dir: _data
-destination: docs
+destination: _dist
 
 exclude:
   - .vs
@@ -48,6 +48,7 @@ layouts_dir: _layouts
 pages_dir: _pages
 port: 8080
 repository: AscenKeeprov/ascenkeeprov.github.io
+source: _src
 theme: null
 timezone: Etc/UTC
 title: "Asen Kiprov's personal site"
