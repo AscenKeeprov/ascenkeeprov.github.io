@@ -19,6 +19,7 @@ exclude:
   - package.json
   - package-lock.json
   - README.md
+  - sitemap.xml
 
 future: true
 

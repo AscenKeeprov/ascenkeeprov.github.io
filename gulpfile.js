@@ -140,7 +140,7 @@ function loadStyles() {
 function stageGithubPage() {
 	fileDeleter.sync(['./**/*', '!.git', '!.vs', `!${config.outputPath}`, '!node_modules', `!${config.inputPath}`,
 		'!.gitattributes', '!.gitignore', '!_config.yml', '!Gemfile', '!Gemfile.lock', '!gulpfile.js',
-		'!LICENSE', '!package.json', '!package-lock.json', '!README.md']);
+		'!LICENSE', '!package.json', '!package-lock.json', '!README.md', '!sitemap.xml']);
 	return gulp.src(`${config.outputPath}/**/*`).pipe(gulp.dest('./'));
 }
 
