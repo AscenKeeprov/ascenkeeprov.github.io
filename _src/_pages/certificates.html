@@ -6,7 +6,7 @@ tile: "certificate.png"
 title: Certificates
 ---
 {%- assign certificates = site.collections | where: "label" , "certificates" | first -%}
-<section class="certificates">
+<section class="certificates" itemscope itemtype="https://schema.org/ImageGallery">
 	<div class="gallery">
 		{%- for file in certificates.files -%}
 		<div class="image-frame">

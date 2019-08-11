@@ -16,12 +16,12 @@ title: Contacts
 {%- capture punchClosingHtml -%}
 {{ page.punchTag | prepend: "</" | append: ">" }}
 {%- endcapture -%}
-<section class="contacts">
+<section class="contacts" itemscope itemtype="https://schema.org/ContactPage">
 	<div class="punch-card">
 		<div class="punch-card-row"></div>
 		<div class="punch-card-row">
-			<address>
-				<a href="mailto:{{ page.email | remove: "[" | remove: "]" }}">
+			<address itemscope itemtype="https://schema.org/ContactPoint">
+				<a href="mailto:{{ page.email | remove: "[" | remove: "]" }}" itemprop="email">
 					{{ page.email | replace: "[", punchOpeningHtml | replace: "]", punchClosingHtml }}
 				</a>
 			</address>
@@ -29,7 +29,7 @@ title: Contacts
 		<div class="punch-card-row"></div>
 		<div class="punch-card-row"></div>
 		<div class="punch-card-row">
-			<address>
+			<address itemscope itemtype="https://schema.org/ContactPoint" itemprop="telephone">
 				<a href="tel:{{ page.mphone | remove: "[" | remove: "]" | remove: "(" | remove: ")" | remove: "-" }}">
 					{{ page.mphone | replace: "[", punchOpeningHtml | replace: "]", punchClosingHtml }}
 				</a>
@@ -38,7 +38,7 @@ title: Contacts
 		<div class="punch-card-row"></div>
 		<div class="punch-card-row"></div>
 		<div class="punch-card-row">
-			<address>
+			<address itemscope itemtype="https://schema.org/ContactPoint">
 				<a href="https://{{ page.github | remove: "[" | remove: "]" }}">
 					{{ page.github | replace: "[", punchOpeningHtml | replace: "]", punchClosingHtml }}
 				</a>

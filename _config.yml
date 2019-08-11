@@ -42,6 +42,24 @@ include: ["_pages"]
 includes_dir: _includes
 incremental: true
 
+keep_files:
+  - .git
+  - .gitattributes
+  - .gitignore
+  - .vs
+  - _config.yml
+  - _dist
+  - _src
+  - Gemfile
+  - Gemfile.lock
+  - gulpfile.js
+  - LICENSE
+  - node_modules
+  - package.json
+  - package-lock.json
+  - README.md
+  - sitemap.xml
+
 kramdown:
   input: GFM
   show_warnings: true
@@ -50,6 +68,10 @@ layouts_dir: _layouts
 pages_dir: _pages
 port: 8080
 repository: AscenKeeprov/ascenkeeprov.github.io
+
+sass:
+  sass_dir: _assets\styles
+
 source: _src
 theme: null
 timezone: Etc/UTC

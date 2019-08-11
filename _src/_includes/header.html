@@ -3,11 +3,11 @@
 {%- assign lastBreadcrumbIndex = breadcrumbs.size | minus: 1 -%}
 <header class="site-header">
 	<nav class="site-navigation">
-		<ul class="breadcrumbs">
+		<ul class="breadcrumbs" itemprop="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
 			{%- for i in (0..lastBreadcrumbIndex) -%}
 			{%- assign breadcrumb = breadcrumbs[i] -%}
 			{% assign breadcrumbName = breadcrumb | default: rootPage.first.title | capitalize %}
-			<li class="breadcrumb">
+			<li class="breadcrumb" itemprop="itemListElement">
 				{%- if i == lastBreadcrumbIndex -%}
 				<span>{{ breadcrumbName }}</span>
 				{%- else -%}

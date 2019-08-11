@@ -62,30 +62,31 @@ function getJekyllConfig(configFilePath) {
 		configObj.assetsPath = `${jekyllConfig.source}/${jekyllConfig.assets_dir}`;
 		configObj.collectionsPath = `${jekyllConfig.source}/${jekyllConfig.collections_dir}`;
 		configObj.layoutsPath = `${jekyllConfig.source}/${jekyllConfig.layouts_dir}`;
-		configObj.outputPath = `./${jekyllConfig.destination}`;
+		configObj.outputPath = `${jekyllConfig.destination}`;
 		configObj.pagesPath = `${jekyllConfig.source}/${jekyllConfig.pages_dir}`;
 		configObj.partialsPath = `${jekyllConfig.source}/${jekyllConfig.includes_dir}`;
 		configObj.inputPath = `${jekyllConfig.source}`;
 		configObj.deployUrl = `git@github.com:${jekyllConfig.repository}`;
+		configObj.filesToKeep = jekyllConfig.keep_files;
 		return configObj;
 	} catch (e) {
 		console.error(e);
 	}
 }
 
-function jekyllBuild() {
-	return processManager.spawn('bundle', ['exec', 'jekyll', 'build'], { shell: true, stdio: 'inherit' });
+function jekyllBuild(done) {
+	processManager.spawn('bundle', ['exec', 'jekyll', 'build'], { shell: true, stdio: 'inherit' }).on('exit', done);
 }
 
-function jekyllClean() {
-	return processManager.exec('bundle exec jekyll clean', (exception, stdout, stderr) => {
+function jekyllClean(done) {
+	processManager.exec('bundle exec jekyll clean', (exception, stdout, stderr) => {
 		if (exception) {
 			console.log(`Jekyll cleanup failed with code ${exception.code}`);
 			console.log(exception.stack);
 		}
 		if (stderr) console.error(stderr);
 		console.log(stdout);
-		return;
+		done();
 	});
 }
 
@@ -138,9 +139,11 @@ function loadStyles() {
 }
 
 function stageGithubPage() {
-	fileDeleter.sync(['./**/*', '!.git', '!.vs', `!${config.outputPath}`, '!node_modules', `!${config.inputPath}`,
-		'!.gitattributes', '!.gitignore', '!_config.yml', '!Gemfile', '!Gemfile.lock', '!gulpfile.js',
-		'!LICENSE', '!package.json', '!package-lock.json', '!README.md', '!sitemap.xml']);
+	let deletePattern = ['./**/*', `!${config.inputPath}`, `!${config.outputPath}`];
+	for (let file of config.filesToKeep) {
+		if (!deletePattern.includes(`!${file}`)) deletePattern.push(`!${file}`);
+	}
+	fileDeleter.sync(deletePattern);
 	return gulp.src(`${config.outputPath}/**/*`).pipe(gulp.dest('./'));
 }
 
@@ -186,6 +189,7 @@ function watchForEvents() {
 	}
 }
 
+exports.build = gulp.series(jekyllClean, jekyllBuild, loadAssets());
 exports.clean = jekyllClean;
 exports.default = gulp.series(jekyllClean, jekyllBuild, loadAssets(), watchForEvents);
-exports.deploy = gulp.series(stageGithubPage, deployGithubPage);
+exports.deploy = gulp.series(stageGithubPage, jekyllClean, deployGithubPage);

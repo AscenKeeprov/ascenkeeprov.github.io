@@ -5,7 +5,7 @@ permalink: /biography/
 tile: "diskette-green.png"
 title: Biography
 ---
-<section class="biography">
+<section class="biography" itemscope itemtype="http://schema.org/Person">
 	{% include strip.html %}
 	<div class="fax-paper-content">
 		<div class="subsection subsection-work">
@@ -13,8 +13,8 @@ title: Biography
 			<ol reversed="reversed">
 				{%- for job in site.data.jobs -%}
 				<li data-order="{{ job.order }}">
-					<time>{{ job.date.from | replace: " ", "&nbsp;"  }} &mdash; {{ job.date.to | replace: " ", "&nbsp;" }}</time>
-					<span>{{ job.position }} at <a href="{{ job.company.url }}">{{ job.company.name }}</a>{%- if job.company.note -%}{{ " (" }}{{ job.company.note }}){%- endif -%}</span>
+					<time itemscope itemtype="https://schema.org/DateTime">{{ job.date.from | replace: " ", "&nbsp;"  }} &mdash; {{ job.date.to | replace: " ", "&nbsp;" }}</time>
+					<span>{{ job.position }} at <a href="{{ job.company.url }}" itemprop="workLocation">{{ job.company.name }}</a>{%- if job.company.note -%}{{ " (" }}{{ job.company.note }}){%- endif -%}</span>
 				</li>
 				{%- endfor -%}
 			</ol>
@@ -24,9 +24,9 @@ title: Biography
 			<ol reversed="reversed">
 				{%- for study in site.data.studies -%}
 				<li data-order="{{ study.order }}">
-					<time>{{ study.date.from }} &mdash; {{ study.date.to }}</time>
+					<time itemscope itemtype="https://schema.org/DateTime">{{ study.date.from }} &mdash; {{ study.date.to }}</time>
 					<sub>{{ study.category }}</sub>
-					<span>{{ study.degree }}{%- if study.degree -%}{{ " at " }}{%- endif -%}<a href="{{ study.institution.url }}">{{ study.institution.name }}</a>{%- if study.institution.location -%}{{ ", " }}{%- endif -%}{{ study.institution.location }}</span>
+					<span>{{ study.degree }}{%- if study.degree -%}{{ " at " }}{%- endif -%}<a href="{{ study.institution.url }}" itemprop="alumniOf">{{ study.institution.name }}</a>{%- if study.institution.location -%}{{ ", " }}{%- endif -%}{{ study.institution.location }}</span>
 				</li>
 				{%- endfor -%}
 			</ol>
@@ -35,9 +35,9 @@ title: Biography
 			<h2 class="heading"><span>Additional training and certification</span></h2>
 			<ol reversed="reversed">
 				{%- for course in site.data.courses -%}
-				<li data-order="{{ course.order }}">
+				<li data-order="{{ course.order }}" itemscope itemtype="https://schema.org/Course">
 					<time>{{ course.date }}</time>
-					<span>{{ course.type }} <a href="{{ course.url }}">{{ course.id }}</a> &mdash; {{ course.name }}</span>
+					<span>{{ course.type }} <a href="{{ course.url }}" itemprop="courseCode">{{ course.id }}</a> &mdash; {{ course.name }}</span>
 				</li>
 				{%- endfor -%}
 			</ol>
@@ -59,9 +59,9 @@ title: Biography
 					</thead>
 					<tbody>
 						{%- for language in site.data.languages -%}
-						<tr>
-							<td>{{ language.code }}</td>
-							<td>{{ language.name }}</td>
+						<tr itemprop="knowsLanguage" itemscope itemtype="https://schema.org/Language">
+							<td itemprop="identifier">{{ language.code }}</td>
+							<td itemprop="name">{{ language.name }}</td>
 							<td>{{ language.ability }}</td>
 							<td>{{ language.proficiency }}</td>
 						</tr>

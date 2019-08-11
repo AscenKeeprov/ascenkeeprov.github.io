@@ -1,5 +1,5 @@
 <footer class="site-footer">
 	<span class="text-larger">&copy;</span><span class="text-lighter">:/</span>Copyright
-	<span class="text-lighter">/</span><span id="currentYear">{{ site.time | date: '%Y' }}</span>
-	<span class="text-lighter">/</span><a href="/">Asen Kiprov</a>
+	<span class="text-lighter">/</span><time datetime="{{ site.time | date: '%Y' }}" itemprop="lastReviewed">{{ site.time | date: '%Y' }}</time>
+	<span class="text-lighter">/</span><a href="/" itemprop="creator">Asen Kiprov</a>
 </footer>
