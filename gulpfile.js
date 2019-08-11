@@ -34,10 +34,6 @@ let config = getJekyllConfig('./_config.yml');
 sassProcessor.compiler = require('node-sass');
 
 function deployGithubPage(done) {
-	fileDeleter.sync(['./**/*', '!.git', '!.vs', `!${config.outputPath}`, '!node_modules', `!${config.inputPath}`,
-		'!.gitattributes', '!.gitignore', '!_config.yml', '!Gemfile', '!Gemfile.lock', '!gulpfile.js',
-		'!LICENSE', '!package.json', '!package-lock.json', '!README.md']);
-	gulp.src(`${config.outputPath}/**/*`).pipe(gulp.dest('./'));
 	ioManager.question('Commit message: ', (message) => {
 		if (message.toUpperCase() == 'CANCEL') return;
 		let deployScript = [
@@ -141,6 +137,13 @@ function loadStyles() {
 		.pipe(browserSync.stream({ match: '**/*.css' }));
 }
 
+function stageGithubPage() {
+	fileDeleter.sync(['./**/*', '!.git', '!.vs', `!${config.outputPath}`, '!node_modules', `!${config.inputPath}`,
+		'!.gitattributes', '!.gitignore', '!_config.yml', '!Gemfile', '!Gemfile.lock', '!gulpfile.js',
+		'!LICENSE', '!package.json', '!package-lock.json', '!README.md']);
+	return gulp.src(`${config.outputPath}/**/*`).pipe(gulp.dest('./'));
+}
+
 function watchForEvents() {
 	browserSync.init({
 		cors: true,
@@ -185,4 +188,4 @@ function watchForEvents() {
 
 exports.clean = jekyllClean;
 exports.default = gulp.series(jekyllClean, jekyllBuild, loadAssets(), watchForEvents);
-exports.deploy = deployGithubPage;
+exports.deploy = gulp.series(stageGithubPage, deployGithubPage);

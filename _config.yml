@@ -1,4 +1,5 @@
 assets_dir: _assets
+author: "Asen Kiprov"
 baseurl: ""
 collections:
   - certificates
@@ -52,4 +53,4 @@ source: _src
 theme: null
 timezone: Etc/UTC
 title: "Asen Kiprov's personal site"
-url: https://ascenkeeprov.github.io
+url: https://ascenkeeprov.github.io/
