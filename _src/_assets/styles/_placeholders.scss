@@ -32,13 +32,6 @@ $transition-timing-function-default: var(--transition-timing-function-default, e
 	grid-row: 1 / 2;
 }
 
-%overlay {
-	padding: 0.25em 0.5em;
-	position: fixed;
-	width: 100%;
-	z-index: 5;
-}
-
 %pseudo {
 	content: "";
 	display: block;
@@ -49,6 +42,13 @@ $transition-timing-function-default: var(--transition-timing-function-default, e
 	border-style: dashed;
 	border-width: 0 0.0625em 0 0;
 	padding: 0.125em 0.5em;
+}
+
+%terminal {
+	padding-left: 0.5em;
+	position: fixed;
+	width: 100%;
+	z-index: 5;
 }
 
 %text-inherit {

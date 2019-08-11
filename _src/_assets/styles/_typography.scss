@@ -129,8 +129,13 @@ table {
 }
 
 .button-keyboard {
-	color: var(--color-raspberred, lightcoral);
+	color: $color-secondary;
 	font-family: Consolas;
+	font-weight: $font-weight-bold;
+
+	&::after {
+		color: var(--color-raspberred, lightcoral);
+	}
 }
 
 .error {
@@ -166,6 +171,10 @@ table {
 			text-align: right;
 		}
 	}
+}
+
+.overlay {
+	text-align: center;
 }
 
 .punch-card {
