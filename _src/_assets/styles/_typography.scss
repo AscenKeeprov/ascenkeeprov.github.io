@@ -173,6 +173,7 @@ table {
 	font-family: Consolas;
 	font-variant-numeric: oldstyle-nums;
 	letter-spacing: $letter-spacing-punch-card;
+	user-select: none;
 
 	&::before {
 		letter-spacing: initial;
@@ -204,11 +205,10 @@ table {
 		white-space: nowrap;
 
 		&:hover {
-			user-select: text;
-
 			& a {
 				@extend %text-initial;
 				font-weight: $font-weight-bolder;
+				user-select: text;
 
 				& .punch-hole {
 					@extend %text-inherit;

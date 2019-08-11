@@ -12,6 +12,17 @@
 	}
 }
 
+@keyframes hang-up {
+	from {
+		transform: perspective(320px) rotateX(30deg) skew(5deg, 15deg) translateY(110vh);
+		transform-origin: bottom center;
+	}
+
+	to {
+		transform: none;
+	}
+}
+
 @keyframes toss {
 	0% {
 		transform: rotate(15deg) translate(100%, 25%);
