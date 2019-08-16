@@ -8,6 +8,8 @@ data_dir: _data
 destination: _dist
 
 exclude:
+  - .git
+  - .github
   - .vs
   - "*.lock"
   - "*.user"
@@ -45,6 +47,7 @@ incremental: true
 keep_files:
   - .git
   - .gitattributes
+  - .github
   - .gitignore
   - .vs
   - _config.yml
