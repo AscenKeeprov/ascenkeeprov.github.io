@@ -1,13 +1,12 @@
 ---
-name: Issue report
-about: Inform me about problems with the site
+name: 'Issue report'
+about: 'Inform me about problems with the site'
 title: ''
-labels: ''
-assignees: ''
-
+labels: 'issue, report'
+assignees: 'ascenkeeprov'
 ---
 
-**Issue description:**
+**Issue description:**  
 A clear and concise description of the problem.
 
 **Steps to reproduce:**
@@ -21,5 +20,5 @@ A clear and concise description of the problem.
  - Operating System: [e.g. Windows 10 / Android 9]
  - Browser: [e.g. Mozilla Firefox v.69 / Google Chrome v.76]
 
-**Screenshots**
+**Screenshots:**  
 If applicable, add screenshots to help explain your problem.
