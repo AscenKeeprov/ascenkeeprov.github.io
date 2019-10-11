@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby ">= 2.5"
 
-gem "github-pages", ">= 198", :group => :jekyll_plugins
+gem "github-pages", ">= 201", :group => :jekyll_plugins
 gem "netrc", "~> 0.11.0"
 gem "wdm", "~> 0.1.1", :install_if => Gem.win_platform?
 

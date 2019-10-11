@@ -63,6 +63,8 @@ p {
 table {
 	thead {
 		th {
+			font-weight: $font-weight-bold;
+			letter-spacing: 0.0625em;
 			text-align: center;
 		}
 	}

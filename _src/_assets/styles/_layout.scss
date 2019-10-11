@@ -184,6 +184,7 @@ section {
 				grid-row: span 1;
 				grid-template-columns: auto;
 				grid-template-rows: minmax(1.5em, 3em) 1fr;
+				overflow-wrap: anywhere;
 
 				& > .category {
 					display: grid;
@@ -197,6 +198,7 @@ section {
 
 				& > .heading {
 					@extend %grid-heading;
+					overflow-y: hidden;
 
 					span {
 						padding-bottom: 0.25em;
@@ -425,7 +427,7 @@ table {
 }
 
 .heading {
-	padding-left: 2em;
+	padding-left: 1em;
 }
 
 .icon {

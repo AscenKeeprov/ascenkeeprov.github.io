@@ -18,6 +18,12 @@ html {
 	}
 }
 
+.heading {
+	@media (min-width: 768px) {
+		padding-left: 2em;
+	}
+}
+
 .punch-card {
 	@each $max-width in $punch-card-max-widths {
 		@media (max-width: #{$max-width}) {
