@@ -20,22 +20,22 @@
 		"url": "https://github.com/AscenKeeprov/ascenkeeprov.github.io/issues"
 	},
 	"devDependencies": {
-		"autoprefixer": "^9.6.1",
+		"autoprefixer": "^9.7.3",
 		"browser-sync": "^2.26.7",
 		"child_process": "^1.0.2",
 		"cssnano": "^4.1.10",
-		"del": "^5.0.0",
+		"del": "^5.1.0",
 		"gulp": "^4.0.2",
 		"gulp-concat": "^2.6.1",
 		"gulp-exec": "^4.0.0",
-		"gulp-imagemin": "^6.0.0",
+		"gulp-imagemin": "^6.2.0",
 		"gulp-postcss": "^8.0.0",
 		"gulp-sass": "^4.0.2",
 		"gulp-sourcemaps": "^2.6.5",
 		"gulp-terser": "^1.2.0",
 		"js-yaml": "^3.13.1",
 		"merge-stream": "^2.0.0",
-		"node-sass": "^4.12.0"
+		"node-sass": "^4.13.0"
 	},
 	"homepage": "https://ascenkeeprov.github.io",
 	"license": "MIT",
