@@ -11,83 +11,79 @@ const fontsDirName = 'fonts';
 const gulp = require('gulp');
 const imageMinifier = require('gulp-imagemin');
 const imagesDirName = 'images';
-const ioManager = require('readline').createInterface({
-	input: process.stdin,
-	output: process.stdout
-});
 const jsMinifier = require('gulp-terser');
 const processManager = require('child_process');
 const sassProcessor = require('gulp-sass');
 const sourceMapper = require('gulp-sourcemaps');
 const scriptsDirName = 'scripts';
 const streamMerger = require('merge-stream');
+const streamReader = require('readline')
 const stylesDirName = 'styles';
 const supportedFontTypes = '{ttf,woff?(2)}';
 const supportedImageTypes = '{gif,ico,jp?(e)g,png,svg}';
 const supportedPageTypes = 'html';
 const supportedScriptTypes = 'js';
 const supportedStyleTypes = '?(s)css';
+const util = require('util');
 const yamlParser = require('js-yaml');
 
-let config = getJekyllConfig('./_config.yml');
+let config = getJekyllConfig();
+let shellExecute = util.promisify(processManager.exec);
 
 sassProcessor.compiler = require('node-sass');
 
-function deployGithubPage(done) {
-	ioManager.question('Commit message: ', (message) => {
-		if (message.toUpperCase() == 'CANCEL') return;
-		let deployScript = [
-			'git add .',
-			`git commit --all --message "${message}" --cleanup=strip`,
-			'git push origin master'
-		].join(' && ');
-		ioManager.close();
-		return processManager.exec(deployScript, (exception, stdout, stderr) => {
-			if (exception) {
-				console.log(`GitHub deployment failed with code ${exception.code}`);
-				console.log(exception.stack);
-			}
-			if (stderr) console.error(stderr);
-			console.log(stdout);
-			return;
-		});
-	});
+async function executeShellCommandAsync(command) {
+	const { stdout, stderr } = await shellExecute(command);
+	if (stderr) console.error(stderr);
+	if (stdout) console.log(stdout);
+}
+
+function getJekyllConfig(configFilePath = './_config.yml') {
+	let jekyllConfig = yamlParser.safeLoad(fileManager.readFileSync(configFilePath, { encoding: 'utf8' }));
+	return {
+		assetsPath: `${jekyllConfig.source}/${jekyllConfig.assets_dir}`,
+		collectionsPath: `${jekyllConfig.source}/${jekyllConfig.collections_dir}`,
+		layoutsPath: `${jekyllConfig.source}/${jekyllConfig.layouts_dir}`,
+		outputPath: `${jekyllConfig.destination}`,
+		pagesPath: `${jekyllConfig.source}/${jekyllConfig.pages_dir}`,
+		partialsPath: `${jekyllConfig.source}/${jekyllConfig.includes_dir}`,
+		inputPath: `${jekyllConfig.source}`,
+		deployUrl: `git@github.com:${jekyllConfig.repository}`,
+		filesToKeep: jekyllConfig.keep_files
+	};
+}
+
+async function gitDeploy(done) {
+	let commitMessage = await prompt(
+		'Commit message (enter CANCEL to abort operation): ',
+		'You must provide a commit message!'
+	);
+	if (commitMessage.toUpperCase() == 'CANCEL') throw new Error('Deployment cancelled');
+	await executeShellCommandAsync('git add .');
+	await executeShellCommandAsync(`git commit --all --message '${commitMessage}' --cleanup=strip`);
+	await executeShellCommandAsync('git push origin master');
 	done();
 }
 
-function getJekyllConfig(configFilePath) {
-	try {
-		let configObj = {};
-		let jekyllConfig = yamlParser.safeLoad(fileManager.readFileSync(configFilePath, { encoding: 'utf8' }));
-		configObj.assetsPath = `${jekyllConfig.source}/${jekyllConfig.assets_dir}`;
-		configObj.collectionsPath = `${jekyllConfig.source}/${jekyllConfig.collections_dir}`;
-		configObj.layoutsPath = `${jekyllConfig.source}/${jekyllConfig.layouts_dir}`;
-		configObj.outputPath = `${jekyllConfig.destination}`;
-		configObj.pagesPath = `${jekyllConfig.source}/${jekyllConfig.pages_dir}`;
-		configObj.partialsPath = `${jekyllConfig.source}/${jekyllConfig.includes_dir}`;
-		configObj.inputPath = `${jekyllConfig.source}`;
-		configObj.deployUrl = `git@github.com:${jekyllConfig.repository}`;
-		configObj.filesToKeep = jekyllConfig.keep_files;
-		return configObj;
-	} catch (e) {
-		console.error(e);
+function gitStage() {
+	let deletePattern = ['./**/*', `!${config.inputPath}`, `!${config.outputPath}`];
+	for (let file of config.filesToKeep) {
+		if (!deletePattern.includes(`!${file}`)) deletePattern.push(`!${file}`);
 	}
+	fileDeleter.sync(deletePattern);
+	return gulp.src(`${config.outputPath}/**/*`).pipe(gulp.dest('./'));
 }
 
 function jekyllBuild(done) {
-	processManager.spawn('bundle', ['exec', 'jekyll', 'build'], { shell: true, stdio: 'inherit' }).on('exit', done);
+	executeShellCommandAsync('bundle exec jekyll build').then(done);
 }
 
 function jekyllClean(done) {
-	processManager.exec('bundle exec jekyll clean', (exception, stdout, stderr) => {
-		if (exception) {
-			console.log(`Jekyll cleanup failed with code ${exception.code}`);
-			console.log(exception.stack);
-		}
-		if (stderr) console.error(stderr);
-		console.log(stdout);
-		done();
-	});
+	executeShellCommandAsync('bundle exec jekyll clean').then(done);
+}
+
+function jekyllDoctor(done) {
+	executeShellCommandAsync('bundle exec jekyll doctor').then(done);
 }
 
 function loadAssets() {
@@ -138,13 +134,25 @@ function loadStyles() {
 		.pipe(browserSync.stream({ match: '**/*.css' }));
 }
 
-function stageGithubPage() {
-	let deletePattern = ['./**/*', `!${config.inputPath}`, `!${config.outputPath}`];
-	for (let file of config.filesToKeep) {
-		if (!deletePattern.includes(`!${file}`)) deletePattern.push(`!${file}`);
-	}
-	fileDeleter.sync(deletePattern);
-	return gulp.src(`${config.outputPath}/**/*`).pipe(gulp.dest('./'));
+function prompt(request, warningMessage) {
+	if (!request) throw new Error('Prompt request cannot be empty!');
+	if (!warningMessage) warningMessage = 'Prompt response cannot be empty!';
+
+	let reader = streamReader.createInterface({
+		input: process.stdin,
+		output: process.stdout,
+		prompt: request,
+	});
+
+	return new Promise(resolve => reader.question(request, response => {
+		response = response.trim();
+		reader.close();
+		if (!response) {
+			console.warn(warningMessage);
+			resolve(prompt(request, warningMessage));
+		}
+		else resolve(response);
+	}));
 }
 
 function watchForEvents() {
@@ -192,4 +200,5 @@ function watchForEvents() {
 exports.build = gulp.series(jekyllClean, jekyllBuild, loadAssets());
 exports.clean = jekyllClean;
 exports.default = gulp.series(jekyllClean, jekyllBuild, loadAssets(), watchForEvents);
-exports.deploy = gulp.series(stageGithubPage, jekyllClean, deployGithubPage);
+exports.deploy = gulp.series(gitStage, jekyllClean, gitDeploy);
+exports.doctor = jekyllDoctor;
