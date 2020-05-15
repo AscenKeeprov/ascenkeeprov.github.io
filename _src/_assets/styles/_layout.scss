@@ -390,7 +390,7 @@ table {
 	@extend %flex-center;
 	flex-wrap: wrap;
 
-	@for $i from 1 through 20 {
+	@for $i from 1 through 32 {
 		.image-frame:nth-child(#{$i}) {
 			animation-delay: $i * 0.6s;
 		}
