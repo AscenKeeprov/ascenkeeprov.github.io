@@ -21,7 +21,6 @@ exclude:
   - package.json
   - package-lock.json
   - README.md
-  - sitemap.xml
 
 future: true
 
@@ -61,7 +60,6 @@ keep_files:
   - package.json
   - package-lock.json
   - README.md
-  - sitemap.xml
 
 kramdown:
   input: GFM
@@ -79,4 +77,4 @@ source: _src
 theme: null
 timezone: Etc/UTC
 title: "Asen Kiprov's personal site"
-url: https://ascenkeeprov.github.io/
+url: https://ascenkeeprov.github.io

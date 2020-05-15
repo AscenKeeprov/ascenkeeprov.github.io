@@ -1,0 +1,6 @@
+<url>
+	<loc>{{ site.url }}{{ page.permalink }}</loc>
+	<lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+	<changefreq>{{ page.sitemap.changefreq | default: "yearly" }}</changefreq>
+	<priority>{{ page.sitemap.priority | default: 0.5}}</priority>
+</url>
