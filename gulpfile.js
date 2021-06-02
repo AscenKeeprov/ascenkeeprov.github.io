@@ -39,7 +39,7 @@ async function executeShellCommandAsync(command) {
 }
 
 function getJekyllConfig(configFilePath = './_config.yml') {
-	let jekyllConfig = yamlParser.safeLoad(fileManager.readFileSync(configFilePath, { encoding: 'utf8' }));
+	let jekyllConfig = yamlParser.load(fileManager.readFileSync(configFilePath, { encoding: 'utf8' }));
 	return {
 		assetsPath: `${jekyllConfig.source}/${jekyllConfig.assets_dir}`,
 		collectionsPath: `${jekyllConfig.source}/${jekyllConfig.collections_dir}`,
