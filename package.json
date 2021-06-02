@@ -35,7 +35,8 @@
 		"gulp-terser": "^2.0.1",
 		"js-yaml": "^4.1.0",
 		"merge-stream": "^2.0.0",
-		"node-sass": "^6.0.0"
+		"node-sass": "^6.0.0",
+		"postcss": "^8.3.0"
 	},
 	"homepage": "https://ascenkeeprov.github.io",
 	"license": "MIT",
